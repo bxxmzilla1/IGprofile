@@ -1,0 +1,97 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>IG Profile Config Panel (Dark Mode)</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      padding: 20px;
+      background: #121212;
+      color: #fff;
+    }
+    input, textarea {
+      width: 100%;
+      margin-bottom: 10px;
+      padding: 10px;
+      border-radius: 6px;
+      background: #1e1e1e;
+      border: 1px solid #333;
+      color: #fff;
+    }
+    button {
+      padding: 10px 20px;
+      font-weight: bold;
+      background: #3897f0;
+      color: white;
+      border: none;
+      border-radius: 6px;
+      cursor: pointer;
+    }
+    .output {
+      margin-top: 20px;
+      word-break: break-word;
+      color: #90caf9;
+    }
+    label {
+      font-weight: bold;
+      margin-top: 10px;
+      display: block;
+    }
+    h2 {
+      margin-bottom: 20px;
+    }
+  </style>
+</head>
+<body>
+  <h2>🛠️ IG Profile Config Panel (Dark Mode)</h2>
+  <label>Username (top bar)</label>
+  <input type="text" id="username" placeholder="e.g. sophieraiin" />
+
+  <label>Full Name (under profile)</label>
+  <input type="text" id="fullname" placeholder="e.g. Sophie Rain" />
+
+  <label>Bio</label>
+  <textarea id="bio" placeholder="🔥 dm me if u’re up late 😈"></textarea>
+
+  <label>OF Link (in bio)</label>
+  <input type="text" id="link" placeholder="e.g. https://onlyfans.com/sophie" />
+
+  <label>Profile Picture URL</label>
+  <input type="text" id="pfp" placeholder="https://i.ibb.co/xxxxxxx.png" />
+
+  <label>Followers</label>
+  <input type="text" id="followers" placeholder="e.g. 7.8M" />
+
+  <label>Following</label>
+  <input type="text" id="following" placeholder="e.g. 56" />
+
+  <label>Posts</label>
+  <input type="text" id="posts" placeholder="e.g. 88" />
+
+  <button onclick="generateURL()">Generate Live IG Page Link</button>
+
+  <div class="output" id="outputLink"></div>
+
+  <script>
+    function generateURL() {
+      const params = new URLSearchParams();
+      params.set("username", document.getElementById("username").value);
+      params.set("fullname", document.getElementById("fullname").value);
+      params.set("bio", document.getElementById("bio").value);
+      params.set("link", document.getElementById("link").value);
+      params.set("pfp", document.getElementById("pfp").value);
+      params.set("followers", document.getElementById("followers").value);
+      params.set("following", document.getElementById("following").value);
+      params.set("posts", document.getElementById("posts").value);
+
+      const baseURL = location.origin + "/index.html";
+      const finalURL = baseURL + "?" + params.toString();
+      document.getElementById("outputLink").innerHTML = 
+        `<strong>✅ Copy this link:</strong><br><a href="${finalURL}" target="_blank">${finalURL}</a>`;
+    }
+  </script>
+</body>
+</html>
