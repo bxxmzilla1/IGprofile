@@ -1,0 +1,109 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>💾 IG Profile Publisher (GitHub)</title>
+  <style>
+    body{font-family:Arial,sans-serif;padding:20px;background:#111;color:#fff}
+    input,textarea{width:100%;margin-bottom:12px;padding:10px;border-radius:6px;background:#1e1e1e;border:1px solid #333;color:#fff}
+    label{font-weight:bold;display:block;margin-top:10px}
+    button{padding:10px 20px;font-weight:bold;background:#3897f0;color:#fff;border:none;border-radius:6px;cursor:pointer}
+    .output{margin-top:20px;word-break:break-word;color:#90caf9}
+    .error{color:#ff6b6b;margin-top:10px}
+  </style>
+</head>
+<body>
+  <h2>💾 IG Profile Publisher (via GitHub)</h2>
+
+  <label>GitHub Token</label>
+  <input type="password" id="token" placeholder="ghp_..."/>
+
+  <label>Filename (e.g. sofiasinx.html)</label>
+  <input type="text" id="filename" placeholder="sofiasinx.html" value="index.html"/>
+
+  <label>Username</label>
+  <input type="text" id="username"/>
+  <label>Full Name</label>
+  <input type="text" id="fullname"/>
+  <label>Age + Emoji</label>
+  <input type="text" id="age" placeholder="20 ✨"/>
+  <label>Snap Username</label>
+  <input type="text" id="snap"/>
+  <label>Bio (multi-line optional)</label>
+  <textarea id="bio"></textarea>
+  <label>OF or link in bio</label>
+  <input type="text" id="link"/>
+  <label>Followers</label>
+  <input type="text" id="followers"/>
+  <label>Following</label>
+  <input type="text" id="following"/>
+  <label>Posts</label>
+  <input type="text" id="posts"/>
+  <label>Profile Picture URL</label>
+  <input type="text" id="pfp"/>
+
+  <button onclick="publish()">🚀 Save to GitHub</button>
+
+  <div class="output" id="out"></div>
+  <div class="error" id="err"></div>
+
+<script>
+const owner = "bxxmzilla1";
+const repo = "IGprofile";
+const template = "index.html";
+
+function $(id){return document.getElementById(id);}
+async function publish(){
+  const token = $("token").value.trim();
+  const filename = $("filename").value.trim();
+  const out = $("out"), err = $("err");
+  err.textContent = ""; out.textContent = "⏳ Working...";
+
+  if(!token){err.textContent = "❌ GitHub token required"; return;}
+
+  try {
+    const tplURL = `https://raw.githubusercontent.com/${owner}/${repo}/main/${template}`;
+    let html = await fetch(tplURL).then(r => r.text());
+
+    const fields = ["username","fullname","age","snap","bio","link","followers","following","posts","pfp"];
+    fields.forEach(id => {
+      html = html.replaceAll(`{{${id}}}`, $(id).value.trim());
+    });
+
+    const path = `contents/${filename}`;
+    const api = `https://api.github.com/repos/${owner}/${repo}/${path}`;
+    const headers = {
+      "Authorization": "Bearer " + token,
+      "Accept": "application/vnd.github+json"
+    };
+
+    let sha = null;
+    const check = await fetch(api, {headers});
+    if(check.ok){
+      const data = await check.json();
+      sha = data.sha;
+    }
+
+    const content = btoa(unescape(encodeURIComponent(html)));
+    const payload = {message: `Update ${filename} via panel`, content, sha};
+    const put = await fetch(api, {
+      method: "PUT",
+      headers,
+      body: JSON.stringify(payload)
+    });
+
+    const res = await put.json();
+    if(!put.ok) throw new Error(res.message || "GitHub error");
+
+    const link = `https://${owner}.github.io/${repo}/${filename}`;
+    out.innerHTML = `✅ Published! <a href="${link}" target="_blank">${link}</a>`;
+  } catch(e){
+    out.textContent = "";
+    err.textContent = "❌ " + e.message;
+  }
+}
+</script>
+</body>
+</html>
