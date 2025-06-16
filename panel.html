@@ -1,0 +1,143 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>IG Profile Publisher PRO</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <style>
+    body { font-family: Arial, sans-serif; background: #121212; color: white; padding: 20px; }
+    input, textarea { width: 100%; margin-bottom: 10px; padding: 10px; background: #1e1e1e; color: white; border: 1px solid #444; border-radius: 6px; }
+    label { font-weight: bold; display: block; margin-top: 10px; }
+    button { padding: 10px 20px; background: #3897f0; color: white; border: none; border-radius: 6px; cursor: pointer; }
+    img.preview { max-width: 120px; border-radius: 100px; margin: 10px 0; display: block; }
+    .output { margin-top: 20px; word-break: break-word; color: #90caf9; }
+  </style>
+</head>
+<body>
+  <h2>📸 IG Profile Publisher (PRO)</h2>
+
+  <label>GitHub Token</label>
+  <input type="password" id="token" placeholder="Your GitHub Personal Access Token" />
+
+  <label>Filename (e.g. sofiasinx.html or index.html)</label>
+  <input type="text" id="filename" value="index.html" />
+
+  <label>Username</label>
+  <input type="text" id="username" />
+  <label>Full Name</label>
+  <input type="text" id="fullname" />
+  <label>Bio</label>
+  <textarea id="bio"></textarea>
+  <label>OF Link</label>
+  <input type="text" id="link" />
+  <label>Followers</label>
+  <input type="text" id="followers" />
+  <label>Following</label>
+  <input type="text" id="following" />
+  <label>Posts</label>
+  <input type="text" id="posts" />
+
+  <label>Profile Picture URL</label>
+  <input type="text" id="pfp" oninput="updatePreview()" />
+  <img class="preview" id="pfpPreview" src="" alt="Preview will appear here" />
+
+  <button onclick="publish()">🚀 Save to GitHub</button>
+
+  <div class="output" id="output"></div>
+
+  <script>
+    function updatePreview() {
+      const url = document.getElementById("pfp").value;
+      const img = document.getElementById("pfpPreview");
+      img.src = url;
+    }
+
+    async function publish() {
+      const token = tokenEl.value.trim();
+      const filename = filenameEl.value.trim();
+      const user = "bxxmzilla1";
+      const repo = "IGprofile";
+      const branch = "main";
+      const apiURL = `https://api.github.com/repos/${user}/${repo}/contents/${filename}`;
+
+      const template = `
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8">
+  <title>{{username}}</title>
+</head>
+<body style="background:#000;color:#fff;padding:20px;font-family:sans-serif;">
+  <div style="display:flex;align-items:center;gap:10px;">
+    <h1 style="color:#3897f0;">@{{username}}</h1><span style="font-size:24px;">✅</span>
+  </div>
+  <strong>{{fullname}}</strong>
+  <br><br>
+  <img src="{{pfp}}" width="120" style="border-radius:60px;" onerror="this.style.display='none'">
+  <p>{{bio}}</p>
+  <a href="{{link}}" style="color:#66f">{{link}}</a>
+  <p>Followers: {{followers}} | Following: {{following}} | Posts: {{posts}}</p>
+</body>
+</html>
+      `.replace("{{username}}", usernameEl.value)
+       .replace("{{fullname}}", fullnameEl.value)
+       .replace("{{pfp}}", pfpEl.value)
+       .replace("{{bio}}", bioEl.value)
+       .replace(/{{link}}/g, linkEl.value)
+       .replace("{{followers}}", followersEl.value)
+       .replace("{{following}}", followingEl.value)
+       .replace("{{posts}}", postsEl.value);
+
+      const encodedContent = btoa(unescape(encodeURIComponent(template)));
+
+      let sha = null;
+      try {
+        const check = await fetch(apiURL, {
+          headers: { Authorization: `token ${token}` }
+        });
+        if (check.status === 200) {
+          const data = await check.json();
+          sha = data.sha;
+        }
+      } catch (_) {}
+
+      const payload = {
+        message: `Publish IG profile: ${filename}`,
+        content: encodedContent,
+        branch: branch
+      };
+      if (sha) payload.sha = sha;
+
+      const res = await fetch(apiURL, {
+        method: "PUT",
+        headers: {
+          Authorization: `token ${token}`,
+          "Content-Type": "application/json"
+        },
+        body: JSON.stringify(payload)
+      });
+
+      const json = await res.json();
+      if (res.ok) {
+        const link = `https://${user}.github.io/${repo}/${filename}`;
+        output.innerHTML = `✅ Published!<br><a href="${link}" target="_blank">${link}</a>`;
+      } else {
+        output.innerHTML = `❌ Error: ${json.message}`;
+      }
+    }
+
+    const tokenEl = document.getElementById("token");
+    const filenameEl = document.getElementById("filename");
+    const usernameEl = document.getElementById("username");
+    const fullnameEl = document.getElementById("fullname");
+    const bioEl = document.getElementById("bio");
+    const linkEl = document.getElementById("link");
+    const pfpEl = document.getElementById("pfp");
+    const followersEl = document.getElementById("followers");
+    const followingEl = document.getElementById("following");
+    const postsEl = document.getElementById("posts");
+    const output = document.getElementById("output");
+  </script>
+</body>
+</html>
