@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8"/>
+<meta name="viewport" content="width=device-width,initial-scale=1"/>
+<title>💎 IG Profile Publisher (Full Layout)</title>
+<style>
+ :root{--bg:#111;--card:#1c1c1c;--border:#2d2d2d;--accent:#3897f0;--text:#fff;--text2:#a0a0a0;font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Helvetica,Arial,sans-serif;}
+ body{margin:0;padding:2rem;background:var(--bg);color:var(--text);}
+ h1{font-size:1.4rem;margin:0 0 1.2rem;font-weight:600;display:flex;align-items:center;gap:.4rem;}
+ label{display:block;margin:.6rem 0 .2rem;font-weight:600;}
+ input,textarea{width:100%;padding:.6rem;border-radius:6px;border:1px solid var(--border);background:var(--card);color:var(--text);font-size:.95rem;}
+ textarea{min-height:60px;resize:vertical;}
+ button{margin-top:1rem;padding:.7rem 1.4rem;border:none;border-radius:6px;background:var(--accent);color:#fff;font-weight:700;font-size:1rem;cursor:pointer;}
+ .output{margin-top:1.2rem;word-break:break-all;color:var(--accent);}
+ .small{font-size:.85rem;color:var(--text2);}
+ .error{color:#ff6b6b;margin-top:.8rem;}
+</style>
+</head>
+<body>
+ <h1>💎 IG Profile Publisher <span class="small">(Full Layout)</span></h1>
+
+ <label>GitHub Token</label>
+ <input id="token" type="password" placeholder="ghp_xxxxxxxxxxxxxxxxxxxxx"/>
+
+ <label>Filename (e.g. sofiasinx.html or index.html)</label>
+ <input id="filename" type="text" placeholder="sofiasinx.html"/>
+
+ <label>Username</label>
+ <input id="username" type="text" placeholder="sofiasinx"/>
+
+ <label>Full Name</label>
+ <input id="fullname" type="text" placeholder="Sofia Sinx"/>
+
+ <label>Bio</label>
+ <textarea id="bio" placeholder="🔥 dm me if you’re up late 😈"></textarea>
+
+ <label>OF Link</label>
+ <input id="link" type="text" placeholder="https://onlyfans.com/sofiasinx"/>
+
+ <label>Followers</label>
+ <input id="followers" type="text" placeholder="7.1M"/>
+
+ <label>Following</label>
+ <input id="following" type="text" placeholder="290"/>
+
+ <label>Posts</label>
+ <input id="posts" type="text" placeholder="73"/>
+
+ <label>Profile Picture URL</label>
+ <input id="pfp" type="text" placeholder="https://i.ibb.co/xxx.png"/>
+
+ <button id="save">💾 Save to GitHub</button>
+ <div id="out" class="output"></div>
+ <div id="err" class="error"></div>
+
+<script>
+const owner="bxxmzilla1"; // <-- change if your user/org is different
+const repo="IGprofile";   // <-- repo containing template & pages
+const templateFile="ig_template_dynamic.html"; // the canonical template in main
+
+const $=id=>document.getElementById(id);
+const out=$("out"),err=$("err");
+
+$("save").onclick=async()=>{
+  err.textContent="";out.textContent="⏳ Working...";
+  try{
+    const token=$("token").value.trim();
+    if(!token){throw new Error("Token required");}
+    const filename=$("filename").value.trim()||"index.html";
+    // 1️⃣ Fetch template
+    const tplResp=await fetch(`https://raw.githubusercontent.com/${owner}/${repo}/main/${templateFile}`);
+    if(!tplResp.ok) throw new Error("Template not found ("+tplResp.status+")");
+    let html=await tplResp.text();
+    // 2️⃣ Replace placeholders
+    const map={
+      username:$("username").value.trim(),
+      fullname:$("fullname").value.trim(),
+      bio:$("bio").value.trim(),
+      link:$("link").value.trim(),
+      followers:$("followers").value.trim(),
+      following:$("following").value.trim(),
+      posts:$("posts").value.trim(),
+      pfp:$("pfp").value.trim()
+    };
+    Object.entries(map).forEach(([k,v])=>{
+      html=html.replaceAll(`{{${k}}}`,v||"-");
+    });
+
+    // 3️⃣ Prepare PUT body
+    const path=`contents/${filename}`;
+    const api=`https://api.github.com/repos/${owner}/${repo}/${path}`;
+    const headers={"Authorization":"Bearer "+token,"Accept":"application/vnd.github+json"};
+    // Check if file exists to obtain sha
+    let sha=null;
+    const getResp=await fetch(api,{headers});
+    if(getResp.ok){
+      const info=await getResp.json();
+      sha=info.sha;
+    }
+    const content=btoa(unescape(encodeURIComponent(html)));
+    const body={message:`Update ${filename} via panel`,content,sha};
+    const putResp=await fetch(api,{method:"PUT",headers,"body":JSON.stringify(body)});
+    if(!putResp.ok){const r=await putResp.json();throw new Error(r.message||putResp.statusText);} 
+    const res=await putResp.json();
+    const pageUrl=`https://${owner}.github.io/${repo}/${filename}`;
+    out.innerHTML=`✅ Published! → <a href="${pageUrl}" target="_blank">${pageUrl}</a>`;
+  }catch(e){out.textContent="";err.textContent="❌ "+e.message;console.error(e);}  
+};
+</script>
+</body>
+</html>
