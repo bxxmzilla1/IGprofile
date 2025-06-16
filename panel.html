@@ -1,0 +1,127 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>IG Profile Publisher Panel</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      padding: 20px;
+      background: #121212;
+      color: white;
+    }
+    input, textarea, select {
+      width: 100%;
+      margin-bottom: 10px;
+      padding: 10px;
+      background: #1e1e1e;
+      color: white;
+      border: 1px solid #444;
+      border-radius: 6px;
+    }
+    button {
+      padding: 10px 20px;
+      background: #3897f0;
+      color: white;
+      border: none;
+      border-radius: 6px;
+      cursor: pointer;
+    }
+    .output {
+      margin-top: 20px;
+      word-break: break-word;
+    }
+  </style>
+</head>
+<body>
+  <h2>📲 IG Profile Publisher Panel</h2>
+
+  <label>GitHub Token</label>
+  <input type="password" id="token" placeholder="Paste your GitHub Personal Access Token" />
+
+  <label>Filename (e.g. sofiasinx.html or index.html)</label>
+  <input type="text" id="filename" placeholder="index.html or custom_name.html" value="index.html" />
+
+  <label>Username</label>
+  <input type="text" id="username" placeholder="e.g. sophieraiin" />
+
+  <label>Full Name</label>
+  <input type="text" id="fullname" placeholder="e.g. Sophie Rain" />
+
+  <label>Bio</label>
+  <textarea id="bio" placeholder="e.g. 🔥 dm me if u’re up late 😈"></textarea>
+
+  <label>OF Link (in bio)</label>
+  <input type="text" id="link" placeholder="e.g. https://onlyfans.com/sophie" />
+
+  <label>Profile Picture URL</label>
+  <input type="text" id="pfp" placeholder="https://i.ibb.co/xxxxxxx.png" />
+
+  <label>Followers</label>
+  <input type="text" id="followers" placeholder="e.g. 7.8M" />
+
+  <label>Following</label>
+  <input type="text" id="following" placeholder="e.g. 56" />
+
+  <label>Posts</label>
+  <input type="text" id="posts" placeholder="e.g. 88" />
+
+  <button onclick="publishToGitHub()">Save to GitHub</button>
+
+  <div class="output" id="outputLink"></div>
+
+  <script>
+    async function publishToGitHub() {
+      const token = document.getElementById("token").value.trim();
+      const filename = document.getElementById("filename").value.trim();
+
+      const user = "bxxmzilla1";
+      const repo = "IGprofile";
+      const branch = "main";
+
+      const content = `
+<!DOCTYPE html>
+<html>
+<head><meta charset="UTF-8"><title>${document.getElementById("username").value}</title></head>
+<body style='background:#000;color:#fff;font-family:sans-serif;padding:20px;'>
+  <h1 style='color:#3897f0;'>@${document.getElementById("username").value} ✅</h1>
+  <p><strong>${document.getElementById("fullname").value}</strong></p>
+  <img src="${document.getElementById("pfp").value}" alt="pfp" width="120" style="border-radius:50%;"><br><br>
+  <p>${document.getElementById("bio").value}</p>
+  <a href="${document.getElementById("link").value}" style='color:#66f'>${document.getElementById("link").value}</a>
+  <p>Followers: ${document.getElementById("followers").value} | Following: ${document.getElementById("following").value} | Posts: ${document.getElementById("posts").value}</p>
+</body>
+</html>
+`;
+
+      const encoded = btoa(unescape(encodeURIComponent(content)));
+
+      const apiURL = `https://api.github.com/repos/${user}/${repo}/contents/${filename}`;
+
+      const res = await fetch(apiURL, {
+        method: "PUT",
+        headers: {
+          "Authorization": `token ${token}`,
+          "Content-Type": "application/json"
+        },
+        body: JSON.stringify({
+          message: `Create/update ${filename}`,
+          content: encoded,
+          branch: branch
+        })
+      });
+
+      const result = await res.json();
+
+      if (res.status === 201 || res.status === 200) {
+        const link = `https://${user}.github.io/${repo}/${filename}`;
+        document.getElementById("outputLink").innerHTML = `✅ File published!<br><a href="${link}" target="_blank">${link}</a>`;
+      } else {
+        document.getElementById("outputLink").innerHTML = `❌ Error: ${result.message || "Something went wrong"}`;
+      }
+    }
+  </script>
+</body>
+</html>
