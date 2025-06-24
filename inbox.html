@@ -1,0 +1,273 @@
+
+<!DOCTYPE html>
+
+<html lang="en">
+<head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Chat Question</title>
+<style>
+    
+body {
+  background-color: #000;
+  color: white;
+  font-family: Arial, sans-serif;
+  margin: 0;
+  padding: 0;
+  height: 100vh;
+  width: 100vw;
+  overflow: hidden;
+}
+
+.chat-container {
+  background-color: #121212;
+  border-radius: 0;
+  width: 100vw;
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+  position: relative;
+  box-shadow: none;
+}
+
+    
+    .logo-box {
+      position: absolute;
+      top: 10px;
+      right: 10px;
+      text-align: center;
+    }
+    .logo-box img {
+      width: 90px;
+      display: block;
+      margin-bottom: 2px;
+    }
+    .logo-box span {
+      font-size: 10px;
+      color: grey;
+    }
+    .chat-header {
+      padding: 15px;
+      border-bottom: 1px solid #333;
+      display: flex;
+      align-items: center;
+    }
+    .story-ring {
+      width: 42px;
+      height: 42px;
+      padding: 2px;
+      border-radius: 50%;
+      background: linear-gradient(45deg, #f58529, #dd2a7b, #8134af, #515bd4);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      animation: pulse 2s infinite;
+      cursor: pointer;
+    }
+    .story-ring img {
+      width: 36px;
+      height: 36px;
+      border-radius: 50%;
+      border: 2px solid #000;
+    }
+    @keyframes pulse {
+      0% { transform: scale(1); opacity: 1; }
+      50% { transform: scale(1.05); opacity: 0.9; }
+      100% { transform: scale(1); opacity: 1; }
+    }
+    .chat-header .info {
+      display: flex;
+      flex-direction: column;
+      margin-left: 10px;
+    }
+    .chat-header .info .name {
+      font-weight: bold;
+      display: flex;
+      align-items: center;
+      gap: 5px;
+    }
+    .chat-header .info .name img {
+      width: 14px;
+      height: 14px;
+    }
+    .chat-header .info .status {
+      font-size: 12px;
+      color: #8bc34a;
+    }
+    .chat-box {
+      flex: 1;
+      padding: 15px;
+      overflow-y: auto;
+    }
+    .message {
+      background-color: #262626;
+      padding: 12px 16px;
+      border-radius: 18px;
+      max-width: 75%;
+      margin-bottom: 10px;
+    }
+    .bot {
+      align-self: flex-start;
+    }
+    .user {
+      align-self: flex-end;
+      background-color: #3d8bfd;
+      color: white;
+    }
+    .options {
+      display: flex;
+      gap: 12px;
+      margin-top: 10px;
+    }
+    .options button {
+      background-color: #0084ff;
+      border: none;
+      color: white;
+      padding: 8px 16px;
+      border-radius: 20px;
+      font-size: 15px;
+      cursor: pointer;
+    }
+    .options button:hover {
+      background-color: #006cd1;
+    }
+    .message.user {
+      align-self: flex-end;
+      background-color: #3d8bfd;
+      color: white;
+      border-radius: 20px;
+      padding: 8px 14px;
+      width: fit-content;
+      max-width: 80%;
+      margin-left: auto;
+      margin-right: 0;
+      word-break: break-word;
+      animation: slideInUser 0.3s ease-out forwards;
+      border-bottom-right-radius: 0;
+    }
+    @keyframes slideInUser {
+      0% { opacity: 0; transform: translateY(15px) scale(0.95); }
+      100% { opacity: 1; transform: translateY(0) scale(1); }
+    }
+    .modal {
+      display: none;
+      position: fixed;
+      top: 0; left: 0;
+      width: 100vw;
+      height: 100vh;
+      background-color: rgba(0, 0, 0, 0.8);
+      justify-content: center;
+      align-items: center;
+      z-index: 999;
+    }
+    .modal img {
+      width: 90%;
+      max-width: 400px;
+      border-radius: 20px;
+    }
+  
+.profile-stats {
+  display: flex;
+  justify-content: space-around;
+  padding: 10px 0;
+  border-bottom: 1px solid #333;
+  color: #f1f1f1;
+  font-size: 13px;
+}
+.profile-stats .stat-bold {
+  font-weight: 600;
+  margin-right: 4px;
+  color: white;
+}
+
+.profile-stats div {
+  color: grey;
+}
+.profile-stats .stat-bold {
+  color: white;
+}
+
+.story-ring img {
+  width: 36px;
+  height: 36px;
+  border-radius: 50%;
+  object-fit: cover;
+  border: 2px solid #000;
+}
+
+  html, body {
+    height: 100%;
+    overflow-y: auto;
+    -webkit-overflow-scrolling: touch;
+    margin: 0;
+    padding-bottom: 60px;
+  }
+</style>
+</head>
+<body>
+<div class="chat-container">
+<div class="chat-header">
+<div class="story-ring" onclick="openModal()">
+<img alt="sophieraiin's profile picture" src="https://i.ibb.co/VpvqBpSp/Screenshot-250513023144-00000-magic.png"/>
+</div>
+<div class="info">
+<div class="name" style="font-weight: 300; color: #f1f1f1; font-family: Arial, sans-serif;">sophieraiin<svg aria-label="Verified" class="x1lliihq x1n2onr6" fill="rgb(0, 149, 246)" height="14" role="img" viewbox="0 0 40 40" width="14"><title>Verified</title><path d="M19.998 3.094 14.638 0l-2.972 5.15H5.432v6.354L0 14.64 3.094 20 0 25.359l5.432 3.137v5.905h5.975L14.638 40l5.36-3.094L25.358 40l3.232-5.6h6.162v-6.01L40 25.359 36.905 20 40 14.641l-5.248-3.03v-6.46h-6.419L25.358 0l-5.36 3.094Zm7.415 11.225 2.254 2.287-11.43 11.5-6.835-6.93 2.244-2.258 4.587 4.581 9.18-9.18Z" fill-rule="evenodd"></path></svg>
+</div>
+<div class="status">Online</div>
+<div class="location" id="location" style="font-size: 11px; color: grey;">Loading location...</div>
+</div>
+</div>
+<div class="chat-box" id="chatBox">
+</div>
+<div class="input-area" style="display: flex; align-items: center; padding: 10px; border-top: 1px solid #333; position: fixed; bottom: 0; width: 100%; background-color: #121212; z-index: 1000; box-sizing: border-box;">
+<input id="userInput" placeholder="Type a message..." style="flex-grow: 1; padding: 12px 18px; border-radius: 25px; border: none; outline: none; font-size: 14px; background-color: #222; color: white; box-sizing: border-box;" type="text"/>
+<button onclick="sendMessage()" style="margin-left: 10px; padding: 12px 20px; border: none; border-radius: 100px; background-color: #3d8bfd; color: white; font-size: 14px; cursor: pointer; white-space: nowrap; box-sizing: border-box;">Send</button>
+</div>
+</div>
+<div class="modal" id="storyModal" onclick="closeModal()">
+<img alt="Story" src="https://wallpapersok.com/images/hd/latina-girl-in-sun-24jsf620blc0az41.jpg"/>
+</div>
+<script>
+    function handleReply(answer) {
+      const chatBox = document.getElementById('chatBox');
+      const options = document.querySelector('.options');
+      if (options) options.remove();
+      const reply = document.createElement('div');
+      reply.className = 'message user';
+      reply.innerText = answer;
+      chatBox.appendChild(reply);
+      chatBox.scrollTop = chatBox.scrollHeight;
+    }
+    function openModal() {
+      document.getElementById('storyModal').style.display = 'flex';
+    }
+    function closeModal() {
+      document.getElementById('storyModal').style.display = 'none';
+    }
+    fetch('https://ipapi.co/json')
+      .then(res => res.json())
+      .then(data => {
+        document.getElementById('location').innerText = `${data.city}, ${data.country_name}`;
+      })
+      .catch(() => {
+        document.getElementById('location').innerText = 'Unknown location';
+      });
+  
+function sendMessage() {
+  const input = document.getElementById('userInput');
+  const message = input.value.trim();
+  if (message) {
+    const chatBox = document.getElementById('chatBox');
+    const reply = document.createElement('div');
+    reply.className = 'message user';
+    reply.innerText = message;
+    chatBox.appendChild(reply);
+    chatBox.scrollTop = chatBox.scrollHeight;
+    input.value = '';
+  }
+}
+
+</script>
+</body>
+</html>
