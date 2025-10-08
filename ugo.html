@@ -1,0 +1,333 @@
+<!DOCTYPE html>
+<html lang="en"><head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>Bad Latina</title>
+  <meta name="description" content="Bad Latina — community videos and player demo.">
+  <meta name="keywords" content="bad latina, videos, community">
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <header class="ph-header">
+    <!-- Top utility bar -->
+    <div class="ph-utility-bar">
+      <div class="ph-utility-links">
+        <a href="#">SPICEVIDS</a>
+        <a href="#">FANCENTRO</a>
+        <a href="#">SEXUAL WELLNESS</a>
+        <a href="#">INSIGHTS</a>
+        <a href="#">SITES</a>
+        <a href="#">SHOP</a>
+        <a href="#">TRUST &amp; SAFETY</a>
+      </div>
+      <div class="ph-language">
+        <a href="#">EN</a>
+      </div>
+    </div>
+
+    <!-- Mobile logo section -->
+    <div class="ph-mobile-logo">
+      <div class="ph-mobile-left">
+        <button class="ph-menu" aria-label="Menu">☰</button>
+        
+        
+      </div>
+      <div class="ph-logo">
+        <img src="data:image/png;base64,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" alt="Bad Latina Logo" class="logo-image">
+      </div>
+        <div class="ph-mobile-right">
+          <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="search-icon"><path stroke="none" d="M0 0h24v24H0z" fill="none"></path><path d="M10 10m-7 0a7 7 0 1 0 14 0a7 7 0 1 0 -14 0"></path><path d="M21 21l-6 -6"></path></svg>
+          <button class="ph-user-btn" aria-label="User">
+            <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="currentColor" class="user-icon"><path stroke="none" d="M0 0h24v24H0z" fill="none"></path><path d="M12 2a5 5 0 1 1 -5 5l.005 -.217a5 5 0 0 1 4.995 -4.783z"></path><path d="M14 14a5 5 0 0 1 5 5v1a2 2 0 0 1 -2 2h-10a2 2 0 0 1 -2 -2v-1a5 5 0 0 1 5 -5h4z"></path></svg>
+          </button>
+        </div>
+    </div>
+
+    <!-- Main header -->
+    <div class="ph-header-inner">
+      <div class="ph-header-container">
+        <div class="ph-header-left">
+          <button class="ph-menu" aria-label="Menu">☰</button>
+          <div class="ph-logo ph-desktop-logo">
+            <img src="data:image/png;base64,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" alt="Bad Latina Logo" class="logo-image">
+          </div>
+        </div>
+        
+          <div class="ph-header-center">
+            <form class="ph-search" onsubmit="return false;">
+              <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="search-icon"><path stroke="none" d="M0 0h24v24H0z" fill="none"></path><path d="M10 10m-7 0a7 7 0 1 0 14 0a7 7 0 1 0 -14 0"></path><path d="M21 21l-6 -6"></path></svg>
+              <input type="text" placeholder="Search Bad Latina" aria-label="Search">
+            </form>
+          </div>
+        
+        <div class="ph-header-right">
+          <nav class="ph-actions">
+            
+            
+            <button class="ph-candy-btn">CANDY AI</button>
+            <button class="ph-upload-btn" aria-label="Upload Video">
+              <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="video-icon"><path stroke="none" d="M0 0h24v24H0z" fill="none"></path><path d="M15 10l4.553 -2.276a1 1 0 0 1 1.447 .894v6.764a1 1 0 0 1 -1.447 .894l-4.553 -2.276v-4z"></path><path d="M3 6m0 2a2 2 0 0 1 2 -2h8a2 2 0 0 1 2 2v8a2 2 0 0 1 -2 2h-8a2 2 0 0 1 -2 -2z"></path></svg>
+            </button>
+            <button class="ph-upload-btn" aria-label="Upload Photo">
+              <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="camera-icon"><path stroke="none" d="M0 0h24v24H0z" fill="none"></path><path d="M5 7h1a2 2 0 0 0 2 -2a1 1 0 0 1 1 -1h6a1 1 0 0 1 1 1a2 2 0 0 0 2 2h1a2 2 0 0 1 2 2v9a2 2 0 0 1 -2 2h-14a2 2 0 0 1 -2 -2v-9a2 2 0 0 1 2 -2"></path><path d="M9 13a3 3 0 1 0 6 0a3 3 0 0 0 -6 0"></path></svg>
+            </button>
+            <button class="ph-user-btn" aria-label="User">
+              <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="currentColor" class="user-icon"><path stroke="none" d="M0 0h24v24H0z" fill="none"></path><path d="M12 2a5 5 0 1 1 -5 5l.005 -.217a5 5 0 0 1 4.995 -4.783z"></path><path d="M14 14a5 5 0 0 1 5 5v1a2 2 0 0 1 -2 2h-10a2 2 0 0 1 -2 -2v-1a5 5 0 0 1 5 -5h4z"></path></svg>
+            </button>
+          </nav>
+        </div>
+      </div>
+    </div>
+
+    <!-- Navigation tabs -->
+    <nav class="ph-tabs">
+      <a href="#" class="active">HOME</a>
+      <a href="#">PORN VIDEOS <span class="dropdown">▼</span></a>
+      <a href="#">CATEGORIES <span class="dropdown">▼</span></a>
+      <a href="#">LIVE CAMS</a>
+      <a href="#">PORNSTARS <span class="dropdown">▼</span></a>
+      <a href="#">FUCK NOW</a>
+      <a href="#">COMMUNITY <span class="dropdown">▼</span></a>
+      <a href="#">PHOTOS &amp; GIFS <span class="dropdown">▼</span></a>
+    </nav>
+  </header>
+
+  <!-- 📱 Mobile Ad Container -->
+  <div class="mobile-ad-container">
+    <div class="mobile-ad-wrapper">
+      <iframe src="https://instachat.fun/boom" width="280" height="80" frameborder="0" allowfullscreen="">
+      </iframe>
+    </div>
+  </div>
+
+  <main class="ph-main">
+    <div class="ph-content">
+      <!-- 🎬 Ad / pre-roll overlay -->
+      <div id="adOverlay" class="adOverlay">
+        <div class="adContent">
+          <p id="adText" contenteditable="false">Ad Section (blank for now)</p>
+        </div>
+      </div>
+
+       <!-- 📺 Preroll Ad Container -->
+       <div id="prerollAd" class="preroll-ad" style="display: none;">
+        <div class="ad-content">
+          <div class="ad-header">
+            <span class="ad-label" contenteditable="false">Advertisement</span>
+            <div class="ad-countdown">
+              <span id="countdown" contenteditable="false">5</span>s
+            </div>
+          </div>
+          <div class="ad-video">
+            <iframe id="prerollIframe" class="preroll-iframe" src="https://instachat.fun/boom" frameborder="0" allowfullscreen="">
+            </iframe>
+          </div>
+          <div class="ad-controls">
+            <button id="skipAd" class="skip-ad-btn" disabled="">
+              <span class="skip-text" contenteditable="false">Skip Ad</span>
+              <span class="skip-timer" contenteditable="false">(<span id="skipTimer" contenteditable="false">5</span>s)</span>
+            </button>
+          </div>
+        </div>
+        </div>
+
+      <!-- 🎥 Player container -->
+      <div id="playerContainer" class="playerContainer">
+        <div id="playButton" class="play-button-overlay">
+        </div>
+        <iframe id="embedFrame" class="embedFrame" src="https://www.pornhub.com/embed/ph5c4f39ccce2ff" frameborder="0" allowfullscreen="">
+        </iframe>
+      </div>
+
+      <!-- 📝 Video title -->
+      <div class="video-title">
+      </div>
+      
+      <!-- 📝 Video title text -->
+      <h2 class="video-title-text" contenteditable="false">Big Ass Hot Latina girl ride on my dick until I cumming inside her 🍆</h2>
+
+      <!-- 📊 Video info section -->
+      <div class="video-info">
+          <!-- Video statistics -->
+          <div class="video-stats">
+            <div class="stats-left">
+              <span class="views"><span class="editable-number" data-type="view-count" contenteditable="false">35.8M</span> Views</span>
+              <span class="separator">|</span>
+              <span class="upload-date" contenteditable="false">1 month ago</span>
+            </div>
+            <div class="stats-right">
+              <button class="action-btn like-btn">
+                <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="icon like-icon"><path stroke="none" d="M0 0h24v24H0z" fill="none"></path><path d="M7 11v8a1 1 0 0 1 -1 1h-2a1 1 0 0 1 -1 -1v-7a1 1 0 0 1 1 -1h3a4 4 0 0 0 4 -4v-1a2 2 0 0 1 4 0v5h3a2 2 0 0 1 2 2l-1 5a2 3 0 0 1 -2 2h-7a3 3 0 0 1 -3 -3"></path></svg>
+                <span class="count" contenteditable="false">103K</span>
+              </button>
+              <button class="action-btn dislike-btn">
+                <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="icon dislike-icon"><path stroke="none" d="M0 0h24v24H0z" fill="none"></path><path d="M7 13v-8a1 1 0 0 0 -1 -1h-2a1 1 0 0 0 -1 1v7a1 1 0 0 0 1 1h3a4 4 0 0 1 4 4v1a2 2 0 0 0 4 0v-5h3a2 2 0 0 0 2 -2l-1 -5a2 3 0 0 0 -2 -2h-7a3 3 0 0 0 -3 3"></path></svg>
+              </button>
+              <button class="action-btn favorites-btn">
+                <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="icon favorites-icon"><path stroke="none" d="M0 0h24v24H0z" fill="none"></path><path d="M19.5 12.572l-7.5 7.428l-7.5 -7.428a5 5 0 1 1 7.5 -6.566a5 5 0 1 1 7.5 6.572"></path></svg>
+                <span class="text">Favorites</span>
+              </button>
+              <button class="action-btn share-btn">
+                <span class="icon share-icon">↗</span>
+                <span class="text">Share</span>
+              </button>
+            </div>
+          </div>
+
+          <!-- Uploader info -->
+          <div class="uploader-info">
+            <div class="uploader-left">
+              <div class="profile-img">
+                <img src="https://i.ibb.co/MktYzm5N/IMG-20250319-WA0237.jpg" alt="Uploader Profile">
+              </div>
+              <div class="uploader-details">
+                <div class="username">
+                  <span class="name" contenteditable="false">Loly Lips</span>
+                  <span class="verified">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="currentColor" class="verified-icon"><path stroke="none" d="M0 0h24v24H0z" fill="none"></path><path d="M12.01 2.011a3.2 3.2 0 0 1 2.113 .797l.154 .145l.698 .698a1.2 1.2 0 0 0 .71 .341l.135 .008h1a3.2 3.2 0 0 1 3.195 3.018l.005 .182v1c0 .27 .092 .533 .258 .743l.09 .1l.697 .698a3.2 3.2 0 0 1 .147 4.382l-.145 .154l-.698 .698a1.2 1.2 0 0 0 -.341 .71l-.008 .135v1a3.2 3.2 0 0 1 -3.018 3.195l-.182 .005h-1a1.2 1.2 0 0 0 -.743 .258l-.1 .09l-.698 .697a3.2 3.2 0 0 1 -4.382 .147l-.154 -.145l-.698 -.698a1.2 1.2 0 0 0 -.71 -.341l-.135 -.008h-1a3.2 3.2 0 0 1 -3.195 -3.018l-.005 -.182v-1a1.2 1.2 0 0 0 -.258 -.743l-.09 -.1l-.697 -.698a3.2 3.2 0 0 1 -.147 -4.382l.145 -.154l.698 -.698a1.2 1.2 0 0 0 .341 -.71l.008 -.135v-1l.005 -.182a3.2 3.2 0 0 1 3.013 -3.013l.182 -.005h1a1.2 1.2 0 0 0 .743 -.258l.1 -.09l.698 -.697a3.2 3.2 0 0 1 2.269 -.944zm3.697 7.282a1 1 0 0 0 -1.414 0l-3.293 3.292l-1.293 -1.292l-.094 -.083a1 1 0 0 0 -1.32 1.497l2 2l.094 .083a1 1 0 0 0 1.32 -.083l4 -4l.083 -.094a1 1 0 0 0 -.083 -1.32z"></path></svg>
+                  </span>
+                </div>
+                <div class="channel-stats"><span class="editable-number" data-type="video-count" contenteditable="false">485</span> Videos | <span class="editable-number" data-type="subscriber-count" contenteditable="false">775K</span> Subscribers</div>
+              </div>
+            </div>
+            <div class="uploader-right">
+              <button class="subscribe-btn" data-url="https://example.com/watch-more">
+                <img src="https://i.ibb.co/k28r86kL/Untitled-design-12.png" alt="Subscribe Icon" class="subscribe-icon">
+                <span class="text">WATCH MORE</span>
+              </button><div class="subscribe-edit-container" style="margin-top: 8px; padding: 8px; background: rgb(26, 26, 26); border: 1px solid rgb(51, 51, 51); border-radius: 4px; position: relative; z-index: 10;"><div style="color: rgb(255, 163, 26); font-size: 12px; font-weight: bold; margin-bottom: 4px;">Edit Subscribe Button URL:</div><input type="text" placeholder="Enter URL for subscribe button" style="width: 100%; padding: 6px; background: rgb(10, 10, 10); border: 1px solid rgb(51, 51, 51); border-radius: 3px; color: rgb(255, 255, 255); font-size: 12px; box-sizing: border-box;"></div>
+            </div>
+          </div>
+
+          <!-- 📱 Ad Container Below WATCH MORE -->
+          <div class="below-watch-more-ad">
+            <div class="below-ad-wrapper">
+              <iframe src="https://instachat.fun/boom" width="600" height="120" frameborder="0" allowfullscreen="">
+              </iframe>
+            </div>
+          </div>
+
+          <!-- Categories -->
+          <div class="categories-section">
+            <h3 class="categories-title">Categories</h3>
+            <div class="categories-tags">
+              <span class="tag" contenteditable="false">18-25<button class="tag-delete-btn" title="Delete Category" style="position: absolute; top: -6px; right: -6px; width: 16px; height: 16px; background: rgb(255, 68, 68); color: white; border: none; border-radius: 50%; cursor: pointer; font-size: 12px; font-weight: bold; display: flex; align-items: center; justify-content: center; z-index: 100; transition: 0.2s; box-shadow: rgba(0, 0, 0, 0.3) 0px 2px 4px;">×</button></span>
+              <span class="tag" contenteditable="false">Amateur<button class="tag-delete-btn" title="Delete Category" style="position: absolute; top: -6px; right: -6px; width: 16px; height: 16px; background: rgb(255, 68, 68); color: white; border: none; border-radius: 50%; cursor: pointer; font-size: 12px; font-weight: bold; display: flex; align-items: center; justify-content: center; z-index: 100; transition: 0.2s; box-shadow: rgba(0, 0, 0, 0.3) 0px 2px 4px;">×</button></span>
+              <span class="tag" contenteditable="false">Latina<button class="tag-delete-btn" title="Delete Category" style="position: absolute; top: -6px; right: -6px; width: 16px; height: 16px; background: rgb(255, 68, 68); color: white; border: none; border-radius: 50%; cursor: pointer; font-size: 12px; font-weight: bold; display: flex; align-items: center; justify-content: center; z-index: 100; transition: 0.2s; box-shadow: rgba(0, 0, 0, 0.3) 0px 2px 4px;">×</button></span>
+              <span class="tag" contenteditable="false">Romantic<button class="tag-delete-btn" title="Delete Category" style="position: absolute; top: -6px; right: -6px; width: 16px; height: 16px; background: rgb(255, 68, 68); color: white; border: none; border-radius: 50%; cursor: pointer; font-size: 12px; font-weight: bold; display: flex; align-items: center; justify-content: center; z-index: 100; transition: 0.2s; box-shadow: rgba(0, 0, 0, 0.3) 0px 2px 4px;">×</button></span>
+              <span class="tag" contenteditable="false">HD<button class="tag-delete-btn" title="Delete Category" style="position: absolute; top: -6px; right: -6px; width: 16px; height: 16px; background: rgb(255, 68, 68); color: white; border: none; border-radius: 50%; cursor: pointer; font-size: 12px; font-weight: bold; display: flex; align-items: center; justify-content: center; z-index: 100; transition: 0.2s; box-shadow: rgba(0, 0, 0, 0.3) 0px 2px 4px;">×</button></span>
+              <span class="tag" contenteditable="false">Popular With Women<button class="tag-delete-btn" title="Delete Category" style="position: absolute; top: -6px; right: -6px; width: 16px; height: 16px; background: rgb(255, 68, 68); color: white; border: none; border-radius: 50%; cursor: pointer; font-size: 12px; font-weight: bold; display: flex; align-items: center; justify-content: center; z-index: 100; transition: 0.2s; box-shadow: rgba(0, 0, 0, 0.3) 0px 2px 4px;">×</button></span>
+              <span class="tag" contenteditable="false">Verified Amateurs<button class="tag-delete-btn" title="Delete Category" style="position: absolute; top: -6px; right: -6px; width: 16px; height: 16px; background: rgb(255, 68, 68); color: white; border: none; border-radius: 50%; cursor: pointer; font-size: 12px; font-weight: bold; display: flex; align-items: center; justify-content: center; z-index: 100; transition: 0.2s; box-shadow: rgba(0, 0, 0, 0.3) 0px 2px 4px;">×</button></span>
+              <span class="tag" contenteditable="false">cumshot<button class="tag-delete-btn" title="Delete Category" style="position: absolute; top: -6px; right: -6px; width: 16px; height: 16px; background: rgb(255, 68, 68); color: white; border: none; border-radius: 50%; cursor: pointer; font-size: 12px; font-weight: bold; display: flex; align-items: center; justify-content: center; z-index: 100; transition: 0.2s; box-shadow: rgba(0, 0, 0, 0.3) 0px 2px 4px;">×</button></span>
+              <span class="tag" contenteditable="false">teen<button class="tag-delete-btn" title="Delete Category" style="position: absolute; top: -6px; right: -6px; width: 16px; height: 16px; background: rgb(255, 68, 68); color: white; border: none; border-radius: 50%; cursor: pointer; font-size: 12px; font-weight: bold; display: flex; align-items: center; justify-content: center; z-index: 100; transition: 0.2s; box-shadow: rgba(0, 0, 0, 0.3) 0px 2px 4px;">×</button></span>
+              <span class="tag" contenteditable="false">creampie<button class="tag-delete-btn" title="Delete Category" style="position: absolute; top: -6px; right: -6px; width: 16px; height: 16px; background: rgb(255, 68, 68); color: white; border: none; border-radius: 50%; cursor: pointer; font-size: 12px; font-weight: bold; display: flex; align-items: center; justify-content: center; z-index: 100; transition: 0.2s; box-shadow: rgba(0, 0, 0, 0.3) 0px 2px 4px;">×</button></span>
+              <span class="tag" contenteditable="false">petite<button class="tag-delete-btn" title="Delete Category" style="position: absolute; top: -6px; right: -6px; width: 16px; height: 16px; background: rgb(255, 68, 68); color: white; border: none; border-radius: 50%; cursor: pointer; font-size: 12px; font-weight: bold; display: flex; align-items: center; justify-content: center; z-index: 100; transition: 0.2s; box-shadow: rgba(0, 0, 0, 0.3) 0px 2px 4px;">×</button></span>
+              <span class="tag" contenteditable="false">brunette<button class="tag-delete-btn" title="Delete Category" style="position: absolute; top: -6px; right: -6px; width: 16px; height: 16px; background: rgb(255, 68, 68); color: white; border: none; border-radius: 50%; cursor: pointer; font-size: 12px; font-weight: bold; display: flex; align-items: center; justify-content: center; z-index: 100; transition: 0.2s; box-shadow: rgba(0, 0, 0, 0.3) 0px 2px 4px;">×</button></span>
+              <span class="tag" contenteditable="false">amateur<button class="tag-delete-btn" title="Delete Category" style="position: absolute; top: -6px; right: -6px; width: 16px; height: 16px; background: rgb(255, 68, 68); color: white; border: none; border-radius: 50%; cursor: pointer; font-size: 12px; font-weight: bold; display: flex; align-items: center; justify-content: center; z-index: 100; transition: 0.2s; box-shadow: rgba(0, 0, 0, 0.3) 0px 2px 4px;">×</button></span>
+              <span class="tag" contenteditable="false">young<button class="tag-delete-btn" title="Delete Category" style="position: absolute; top: -6px; right: -6px; width: 16px; height: 16px; background: rgb(255, 68, 68); color: white; border: none; border-radius: 50%; cursor: pointer; font-size: 12px; font-weight: bold; display: flex; align-items: center; justify-content: center; z-index: 100; transition: 0.2s; box-shadow: rgba(0, 0, 0, 0.3) 0px 2px 4px;">×</button></span>
+              <span class="tag" contenteditable="false">POV<button class="tag-delete-btn" title="Delete Category" style="position: absolute; top: -6px; right: -6px; width: 16px; height: 16px; background: rgb(255, 68, 68); color: white; border: none; border-radius: 50%; cursor: pointer; font-size: 12px; font-weight: bold; display: flex; align-items: center; justify-content: center; z-index: 100; transition: 0.2s; box-shadow: rgba(0, 0, 0, 0.3) 0px 2px 4px;">×</button></span>
+              <span class="tag" contenteditable="false">cute<button class="tag-delete-btn" title="Delete Category" style="position: absolute; top: -6px; right: -6px; width: 16px; height: 16px; background: rgb(255, 68, 68); color: white; border: none; border-radius: 50%; cursor: pointer; font-size: 12px; font-weight: bold; display: flex; align-items: center; justify-content: center; z-index: 100; transition: 0.2s; box-shadow: rgba(0, 0, 0, 0.3) 0px 2px 4px;">×</button></span>
+              <span class="tag" contenteditable="false">roleplay<button class="tag-delete-btn" title="Delete Category" style="position: absolute; top: -6px; right: -6px; width: 16px; height: 16px; background: rgb(255, 68, 68); color: white; border: none; border-radius: 50%; cursor: pointer; font-size: 12px; font-weight: bold; display: flex; align-items: center; justify-content: center; z-index: 100; transition: 0.2s; box-shadow: rgba(0, 0, 0, 0.3) 0px 2px 4px;">×</button></span>
+              <span class="tag" contenteditable="false">18yo<button class="tag-delete-btn" title="Delete Category" style="position: absolute; top: -6px; right: -6px; width: 16px; height: 16px; background: rgb(255, 68, 68); color: white; border: none; border-radius: 50%; cursor: pointer; font-size: 12px; font-weight: bold; display: flex; align-items: center; justify-content: center; z-index: 100; transition: 0.2s; box-shadow: rgba(0, 0, 0, 0.3) 0px 2px 4px;">×</button></span>
+              <span class="tag" contenteditable="false">pov-cumshot<button class="tag-delete-btn" title="Delete Category" style="position: absolute; top: -6px; right: -6px; width: 16px; height: 16px; background: rgb(255, 68, 68); color: white; border: none; border-radius: 50%; cursor: pointer; font-size: 12px; font-weight: bold; display: flex; align-items: center; justify-content: center; z-index: 100; transition: 0.2s; box-shadow: rgba(0, 0, 0, 0.3) 0px 2px 4px;">×</button></span>
+              <span class="tag" contenteditable="false">pov-blowjob<button class="tag-delete-btn" title="Delete Category" style="position: absolute; top: -6px; right: -6px; width: 16px; height: 16px; background: rgb(255, 68, 68); color: white; border: none; border-radius: 50%; cursor: pointer; font-size: 12px; font-weight: bold; display: flex; align-items: center; justify-content: center; z-index: 100; transition: 0.2s; box-shadow: rgba(0, 0, 0, 0.3) 0px 2px 4px;">×</button></span>
+              <span class="tag" contenteditable="false">multiple-cumshots<button class="tag-delete-btn" title="Delete Category" style="position: absolute; top: -6px; right: -6px; width: 16px; height: 16px; background: rgb(255, 68, 68); color: white; border: none; border-radius: 50%; cursor: pointer; font-size: 12px; font-weight: bold; display: flex; align-items: center; justify-content: center; z-index: 100; transition: 0.2s; box-shadow: rgba(0, 0, 0, 0.3) 0px 2px 4px;">×</button></span>
+              <span class="tag" contenteditable="false">pov-doggy<button class="tag-delete-btn" title="Delete Category" style="position: absolute; top: -6px; right: -6px; width: 16px; height: 16px; background: rgb(255, 68, 68); color: white; border: none; border-radius: 50%; cursor: pointer; font-size: 12px; font-weight: bold; display: flex; align-items: center; justify-content: center; z-index: 100; transition: 0.2s; box-shadow: rgba(0, 0, 0, 0.3) 0px 2px 4px;">×</button></span>
+              <span class="tag" contenteditable="false">pov-creampie<button class="tag-delete-btn" title="Delete Category" style="position: absolute; top: -6px; right: -6px; width: 16px; height: 16px; background: rgb(255, 68, 68); color: white; border: none; border-radius: 50%; cursor: pointer; font-size: 12px; font-weight: bold; display: flex; align-items: center; justify-content: center; z-index: 100; transition: 0.2s; box-shadow: rgba(0, 0, 0, 0.3) 0px 2px 4px;">×</button></span>
+              <span class="tag" contenteditable="false">pov<button class="tag-delete-btn" title="Delete Category" style="position: absolute; top: -6px; right: -6px; width: 16px; height: 16px; background: rgb(255, 68, 68); color: white; border: none; border-radius: 50%; cursor: pointer; font-size: 12px; font-weight: bold; display: flex; align-items: center; justify-content: center; z-index: 100; transition: 0.2s; box-shadow: rgba(0, 0, 0, 0.3) 0px 2px 4px;">×</button></span>
+              <span class="tag" contenteditable="false">roleplay<button class="tag-delete-btn" title="Delete Category" style="position: absolute; top: -6px; right: -6px; width: 16px; height: 16px; background: rgb(255, 68, 68); color: white; border: none; border-radius: 50%; cursor: pointer; font-size: 12px; font-weight: bold; display: flex; align-items: center; justify-content: center; z-index: 100; transition: 0.2s; box-shadow: rgba(0, 0, 0, 0.3) 0px 2px 4px;">×</button></span>
+              <span class="tag" contenteditable="false">household-fantasy<button class="tag-delete-btn" title="Delete Category" style="position: absolute; top: -6px; right: -6px; width: 16px; height: 16px; background: rgb(255, 68, 68); color: white; border: none; border-radius: 50%; cursor: pointer; font-size: 12px; font-weight: bold; display: flex; align-items: center; justify-content: center; z-index: 100; transition: 0.2s; box-shadow: rgba(0, 0, 0, 0.3) 0px 2px 4px;">×</button></span>
+              <span class="tag" contenteditable="false">scott-stark<button class="tag-delete-btn" title="Delete Category" style="position: absolute; top: -6px; right: -6px; width: 16px; height: 16px; background: rgb(255, 68, 68); color: white; border: none; border-radius: 50%; cursor: pointer; font-size: 12px; font-weight: bold; display: flex; align-items: center; justify-content: center; z-index: 100; transition: 0.2s; box-shadow: rgba(0, 0, 0, 0.3) 0px 2px 4px;">×</button></span>
+              <span class="tag" contenteditable="false">juniper-ren<button class="tag-delete-btn" title="Delete Category" style="position: absolute; top: -6px; right: -6px; width: 16px; height: 16px; background: rgb(255, 68, 68); color: white; border: none; border-radius: 50%; cursor: pointer; font-size: 12px; font-weight: bold; display: flex; align-items: center; justify-content: center; z-index: 100; transition: 0.2s; box-shadow: rgba(0, 0, 0, 0.3) 0px 2px 4px;">×</button></span>
+              <span class="tag" contenteditable="false">milf<button class="tag-delete-btn" title="Delete Category" style="position: absolute; top: -6px; right: -6px; width: 16px; height: 16px; background: rgb(255, 68, 68); color: white; border: none; border-radius: 50%; cursor: pointer; font-size: 12px; font-weight: bold; display: flex; align-items: center; justify-content: center; z-index: 100; transition: 0.2s; box-shadow: rgba(0, 0, 0, 0.3) 0px 2px 4px;">×</button></span>
+              <span class="tag" contenteditable="false">hentai<button class="tag-delete-btn" title="Delete Category" style="position: absolute; top: -6px; right: -6px; width: 16px; height: 16px; background: rgb(255, 68, 68); color: white; border: none; border-radius: 50%; cursor: pointer; font-size: 12px; font-weight: bold; display: flex; align-items: center; justify-content: center; z-index: 100; transition: 0.2s; box-shadow: rgba(0, 0, 0, 0.3) 0px 2px 4px;">×</button></span>
+            </div><button id="categorySeeMoreBtn" data-expanded="false" style="margin-left: 8px; padding: 6px 12px; background: transparent; border: 1px solid rgb(255, 163, 26); border-radius: 4px; color: rgb(255, 163, 26); font-size: 12px; font-weight: 500; cursor: pointer; transition: 0.2s; display: none;">See more</button>
+          </div>
+        </div>
+      
+      <section class="ph-grid">
+        <article class="ph-card" data-url="https://example.com/video-1" style="cursor: pointer; transition: transform 0.2s, box-shadow 0.2s; position: relative;">
+          <div class="thumb clip-thumbnail">
+            <img src="https://imagex1.sx.cdn.live/images/pinporn/2015/11/22/14365057.webp?width=620" alt="Clip thumbnail" class="thumbnail-static">
+            <img src="https://imagex1.sx.cdn.live/images/pinporn/2015/11/22/14365057.webp?width=620" alt="Clip preview" class="thumbnail-hover">
+          </div>
+          <h4 class="title" contenteditable="false">Hungry girlfriend do INTENSE DEEPTHROAT and FACEFUCK -....</h4>
+          <div class="meta"><span class="editable-number" data-type="duration-minutes" contenteditable="false">12</span>:<span class="editable-number" data-type="duration-seconds" contenteditable="false">34</span> · <span class="editable-number" data-type="views" contenteditable="false">1.2M</span> views · <span class="editable-number" data-type="rating" contenteditable="false">98</span>%</div>
+        <div class="video-url-edit-container" style="margin-top: 8px; padding: 8px; background: rgb(26, 26, 26); border: 1px solid rgb(51, 51, 51); border-radius: 4px; position: relative; z-index: 10;"><div style="color: rgb(255, 163, 26); font-size: 12px; font-weight: bold; margin-bottom: 4px;">Edit Link URL 1:</div><input type="text" placeholder="Enter video URL" style="width: 100%; padding: 6px; background: rgb(10, 10, 10); border: 1px solid rgb(51, 51, 51); border-radius: 3px; color: rgb(255, 255, 255); font-size: 12px; box-sizing: border-box;"></div><button class="remove-clip-btn" title="Remove Clip" style="position: absolute; top: 8px; right: 8px; width: 24px; height: 24px; background: rgb(255, 68, 68); color: white; border: none; border-radius: 50%; cursor: pointer; font-size: 12px; display: flex; align-items: center; justify-content: center; z-index: 100; transition: 0.2s; box-shadow: rgba(0, 0, 0, 0.3) 0px 2px 4px;">×</button></article>
+        <article class="ph-card" data-url="https://example.com/video-2" style="cursor: pointer; transition: transform 0.2s, box-shadow 0.2s; position: relative;">
+          <div class="thumb clip-thumbnail">
+            <img src="https://imagex1.sx.cdn.live/images/pinporn/2015/07/03/12691913.webp?width=620" alt="Clip thumbnail" class="thumbnail-static">
+            <img src="https://imagex1.sx.cdn.live/images/pinporn/2015/07/03/12691913.webp?width=620" alt="Clip preview" class="thumbnail-hover">
+          </div>
+          <h4 class="title" contenteditable="false">Pov Hot sex with my Cute Stepsister with Big Tits, Creampie and Cumshot</h4>
+          <div class="meta"><span class="editable-number" data-type="duration-minutes" contenteditable="false">09</span>:<span class="editable-number" data-type="duration-seconds" contenteditable="false">21</span> · <span class="editable-number" data-type="views" contenteditable="false">543K</span> views · <span class="editable-number" data-type="rating" contenteditable="false">95</span>%</div>
+        <div class="video-url-edit-container" style="margin-top: 8px; padding: 8px; background: rgb(26, 26, 26); border: 1px solid rgb(51, 51, 51); border-radius: 4px; position: relative; z-index: 10;"><div style="color: rgb(255, 163, 26); font-size: 12px; font-weight: bold; margin-bottom: 4px;">Edit Link URL 2:</div><input type="text" placeholder="Enter video URL" style="width: 100%; padding: 6px; background: rgb(10, 10, 10); border: 1px solid rgb(51, 51, 51); border-radius: 3px; color: rgb(255, 255, 255); font-size: 12px; box-sizing: border-box;"></div><button class="remove-clip-btn" title="Remove Clip" style="position: absolute; top: 8px; right: 8px; width: 24px; height: 24px; background: rgb(255, 68, 68); color: white; border: none; border-radius: 50%; cursor: pointer; font-size: 12px; display: flex; align-items: center; justify-content: center; z-index: 100; transition: 0.2s; box-shadow: rgba(0, 0, 0, 0.3) 0px 2px 4px;">×</button></article>
+        <article class="ph-card" data-url="https://example.com/video-3" style="cursor: pointer; transition: transform 0.2s, box-shadow 0.2s; position: relative;">
+          <div class="thumb clip-thumbnail">
+            <img src="https://imagex1.sx.cdn.live/images/pinporn/2019/08/18/21660668.webp?width=300" alt="Clip thumbnail" class="thumbnail-static">
+            <img src="https://imagex1.sx.cdn.live/images/pinporn/2019/08/18/21660668.webp?width=300" alt="Clip preview" class="thumbnail-hover">
+          </div>
+          <h4 class="title" contenteditable="false">Step Sis just wanted to watch TV, but this happened...</h4>
+          <div class="meta"><span class="editable-number" data-type="duration-minutes" contenteditable="false">07</span>:<span class="editable-number" data-type="duration-seconds" contenteditable="false">10</span> · <span class="editable-number" data-type="views" contenteditable="false">231K</span> views · <span class="editable-number" data-type="rating" contenteditable="false">93</span>%</div>
+        <div class="video-url-edit-container" style="margin-top: 8px; padding: 8px; background: rgb(26, 26, 26); border: 1px solid rgb(51, 51, 51); border-radius: 4px; position: relative; z-index: 10;"><div style="color: rgb(255, 163, 26); font-size: 12px; font-weight: bold; margin-bottom: 4px;">Edit Link URL 3:</div><input type="text" placeholder="Enter video URL" style="width: 100%; padding: 6px; background: rgb(10, 10, 10); border: 1px solid rgb(51, 51, 51); border-radius: 3px; color: rgb(255, 255, 255); font-size: 12px; box-sizing: border-box;"></div><button class="remove-clip-btn" title="Remove Clip" style="position: absolute; top: 8px; right: 8px; width: 24px; height: 24px; background: rgb(255, 68, 68); color: white; border: none; border-radius: 50%; cursor: pointer; font-size: 12px; display: flex; align-items: center; justify-content: center; z-index: 100; transition: 0.2s; box-shadow: rgba(0, 0, 0, 0.3) 0px 2px 4px;">×</button></article>
+        <article class="ph-card" data-url="https://example.com/video-4" style="cursor: pointer; transition: transform 0.2s, box-shadow 0.2s; position: relative;">
+          <div class="thumb clip-thumbnail">
+            <img src="https://imagex1.sx.cdn.live/images/pinporn/2023/06/02/29499110.webp?width=300" alt="Clip thumbnail" class="thumbnail-static">
+            <img src="https://imagex1.sx.cdn.live/images/pinporn/2023/06/02/29499110.webp?width=300" alt="Clip preview" class="thumbnail-hover">
+          </div>
+          <h4 class="title" contenteditable="false">Cheerleader with a sexy face gives a blowjob and gets cum in her mouth</h4>
+          <div class="meta"><span class="editable-number" data-type="duration-minutes" contenteditable="false">11</span>:<span class="editable-number" data-type="duration-seconds" contenteditable="false">02</span> · <span class="editable-number" data-type="views" contenteditable="false">87K</span> views · <span class="editable-number" data-type="rating" contenteditable="false">90</span>%</div>
+        <div class="video-url-edit-container" style="margin-top: 8px; padding: 8px; background: rgb(26, 26, 26); border: 1px solid rgb(51, 51, 51); border-radius: 4px; position: relative; z-index: 10;"><div style="color: rgb(255, 163, 26); font-size: 12px; font-weight: bold; margin-bottom: 4px;">Edit Link URL 4:</div><input type="text" placeholder="Enter video URL" style="width: 100%; padding: 6px; background: rgb(10, 10, 10); border: 1px solid rgb(51, 51, 51); border-radius: 3px; color: rgb(255, 255, 255); font-size: 12px; box-sizing: border-box;"></div><button class="remove-clip-btn" title="Remove Clip" style="position: absolute; top: 8px; right: 8px; width: 24px; height: 24px; background: rgb(255, 68, 68); color: white; border: none; border-radius: 50%; cursor: pointer; font-size: 12px; display: flex; align-items: center; justify-content: center; z-index: 100; transition: 0.2s; box-shadow: rgba(0, 0, 0, 0.3) 0px 2px 4px;">×</button></article>
+      </section>
+    </div>
+
+    <aside class="ph-sidebar ph-sidebar-right">
+      <div class="ad-banner">
+        <div class="ad-content">
+          <div class="ad-image">
+            <img src="https://via.placeholder.com/300x200/1a1a1a/ffa31a?text=LIVE+CAM+SHOWS" alt="Live Cam Shows Ad" class="sidebar-ad-image">
+          </div>
+          <div class="ad-text">
+            <h3 contenteditable="false">LIVE CAM SHOWS</h3>
+            <p contenteditable="false">JOIN FREE NOW</p>
+            <button class="ad-btn">WATCH LIVE</button>
+          </div>
+        </div>
+      </div>
+      
+      <!-- Sidebar video container -->
+        <div class="sidebar-video-container">
+          <div class="sidebar-video-wrapper">
+            <img src="https://imagex1.sx.cdn.live/images/pinporn/2019/09/15/21816819.webp?width=300" alt="Sidebar Video 1" class="sidebar-video-image">
+          </div>
+        </div>
+        
+        <div class="sidebar-video-container">
+          <div class="sidebar-video-wrapper">
+            <img src="https://imagex1.sx.cdn.live/images/pinporn/2015/10/06/13971316.webp?width=300" alt="Sidebar Video 2" class="sidebar-video-image">
+          </div>
+        </div>
+      
+      <div class="ad-banner">
+        <div class="ad-content">
+          <div class="ad-image">
+            <img src="https://via.placeholder.com/300x200/1a1a1a/ffa31a?text=PREMIUM+VIDEOS" alt="Premium Videos Ad" class="sidebar-ad-image">
+          </div>
+          <div class="ad-text">
+            <h3 contenteditable="false">PREMIUM VIDEOS</h3>
+            <p contenteditable="false">UNLIMITED ACCESS</p>
+            <button class="ad-btn">SUBSCRIBE</button>
+          </div>
+        </div>
+      </div>
+    </aside>
+  </main>
+
+  <footer class="ph-footer">
+    <small>© Bad Latina — demo interface.</small>
+  </footer>
+
+
+  <script src="script.js"></script>
+
+
+<div id="visual-editor-overlay" style="position: fixed; top: 0px; left: 0px; width: 100%; height: 100%; background: rgba(52, 152, 219, 0.1); border: 2px solid rgb(52, 152, 219); pointer-events: none; z-index: 999999; display: none; box-sizing: border-box;"></div><div id="visual-editor-panel" style="position: fixed; top: 20px; right: 20px; width: 300px; max-height: 80vh; background: rgb(44, 62, 80); color: white; border-radius: 8px; box-shadow: rgba(0, 0, 0, 0.3) 0px 4px 20px; z-index: 1000000; display: none; overflow-y: auto; font-family: &quot;Segoe UI&quot;, Tahoma, Geneva, Verdana, sans-serif;"></div></body></html>
