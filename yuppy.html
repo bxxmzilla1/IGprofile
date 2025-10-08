@@ -1,0 +1,1876 @@
+<!DOCTYPE html>
+<html lang="en"><head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>Bad Latina</title>
+  <meta name="description" content="Bad Latina — community videos and player demo.">
+  <meta name="keywords" content="bad latina, videos, community">
+  
+<style>/* Hide scrollbars but keep scrolling functionality */
+* {
+  scrollbar-width: none; /* Firefox */
+  -ms-overflow-style: none; /* Internet Explorer 10+ */
+}
+
+*::-webkit-scrollbar {
+  display: none; /* WebKit browsers (Chrome, Safari, Edge) */
+}
+
+html, body {
+  scrollbar-width: none; /* Firefox */
+  -ms-overflow-style: none; /* Internet Explorer 10+ */
+}
+
+html::-webkit-scrollbar, body::-webkit-scrollbar {
+  display: none; /* WebKit browsers */
+}
+
+:root {
+  --bg: #0a0a0a;
+  --panel: #111111;
+  --border: #1e1e1e;
+  --text: #e6e6e6;
+  --muted: #a0a0a0;
+  --accent: #ffa31a; /* Pornhub-like orange */
+  --accent-dark: #ff8c00;
+}
+body {
+  font-family: Arial, Helvetica, sans-serif;
+  background: var(--bg);
+  color: var(--text);
+  margin: 0;
+}
+/* Header styling to match reference exactly */
+.ph-header {
+  background: #0b0b0b;
+  border-bottom: 1px solid var(--border);
+  width: 100%;
+}
+
+/* Top utility bar */
+.ph-utility-bar {
+  background: #0b0b0b;
+  border-bottom: 1px solid var(--border);
+  padding: 6px 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  max-width: 1200px;
+  margin: 0 auto;
+  padding-left: 16px;
+  padding-right: 16px;
+}
+
+.ph-utility-links {
+  display: flex;
+  gap: 16px;
+}
+
+.ph-utility-links a {
+  color: #999;
+  text-decoration: none;
+  font-size: 12px;
+  font-weight: 500;
+}
+
+.ph-language a {
+  color: #999;
+  text-decoration: none;
+  font-size: 12px;
+  font-weight: 500;
+}
+
+/* Mobile logo section */
+.ph-mobile-logo {
+  display: none;
+  background: #0b0b0b;
+  border-bottom: 1px solid var(--border);
+  padding: 6px 0;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+  min-height: 48px;
+}
+
+.ph-mobile-left {
+  position: absolute;
+  left: 16px;
+  top: 50%;
+  transform: translateY(-50%);
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.ph-mobile-logo .ph-menu {
+  /* Menu button styling moved to ph-mobile-left container */
+}
+
+.ph-mobile-logo .ph-logo {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+  z-index: 1;
+}
+
+.ph-mobile-right {
+  position: absolute;
+  right: 16px;
+  top: 50%;
+  transform: translateY(-50%);
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.ph-mobile-logo .search-icon {
+  color: var(--accent);
+  font-size: 20px;
+  cursor: pointer;
+}
+
+/* Main header - full width with centered content */
+.ph-header-inner {
+  background: #0b0b0b;
+  width: 100%;
+  height: 70px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0;
+}
+
+.ph-header-container {
+  max-width: 1200px;
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0 20px;
+  height: 100%;
+}
+
+.ph-header-left {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  flex: 0 0 auto;
+}
+
+.ph-header-center {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex: 1;
+  max-width: 500px;
+  margin: 0 20px;
+}
+
+.ph-header-right {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  flex: 0 0 auto;
+}
+
+.ph-menu {
+  background: transparent;
+  border: 0;
+  color: var(--accent);
+  font-size: 28px;
+  cursor: pointer;
+  padding: 8px;
+}
+
+.ph-logo {
+  display: flex;
+  align-items: center;
+  font-weight: 800;
+  letter-spacing: 0.2px;
+  font-size: 24px;
+}
+
+.logo-image {
+  height: 60px;
+  width: auto;
+  max-width: 200px;
+  object-fit: contain;
+  display: block;
+}
+
+/* Mobile logo sizing for 375px screens */
+@media (max-width: 768px) {
+  .logo-image {
+    height: 42px;
+    max-width: 140px;
+  }
+}
+
+/* Extra small mobile screens */
+@media (max-width: 375px) {
+  .logo-image {
+    height: 42px;
+    max-width: 140px;
+  }
+}
+
+.ph-search {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  background: #1a1a1a;
+  border-radius: 20px;
+  padding: 8px 12px;
+  max-width: 500px;
+}
+
+.search-icon {
+  color: #666;
+  margin-right: 8px;
+  width: 14px;
+  height: 14px;
+  display: inline-block;
+  vertical-align: middle;
+}
+
+.user-icon {
+  width: 18px;
+  height: 18px;
+  display: inline-block;
+  vertical-align: middle;
+  color: #666;
+}
+
+.ph-user-btn {
+  background: transparent;
+  border: none;
+  padding: 4px;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+@media (max-width: 768px) {
+  .ph-mobile-logo .search-icon {
+    width: 20px;
+    height: 20px;
+    color: #999;
+  }
+  
+  .ph-mobile-logo .user-icon {
+    width: 24px;
+    height: 24px;
+    color: #999;
+  }
+  
+  .ph-mobile-logo .ph-user-btn {
+    padding: 6px;
+  }
+  
+  /* Mobile edit and export buttons */
+  .ph-edit-btn-mobile, .ph-export-btn-mobile {
+    background: transparent;
+    border: none;
+    padding: 12px;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: #999;
+    transition: all 0.2s ease;
+    font-size: 20px;
+  }
+  
+  .ph-edit-btn-mobile:hover, .ph-export-btn-mobile:hover {
+    color: var(--accent);
+    background: rgba(255, 163, 26, 0.1);
+    border-radius: 6px;
+  }
+  
+  .ph-edit-btn-mobile.active {
+    color: var(--accent);
+    background: rgba(255, 163, 26, 0.2);
+    border-radius: 6px;
+  }
+  
+  .ph-edit-btn-mobile svg, .ph-export-btn-mobile svg {
+    width: 22px;
+    height: 22px;
+  }
+}
+
+.ph-search input {
+  flex: 1;
+  background: transparent;
+  border: none;
+  color: var(--text);
+  font-size: 14px;
+  outline: none;
+}
+
+.ph-search input::placeholder {
+  color: #666;
+}
+
+.ph-actions { 
+  display: flex; 
+  gap: 8px; 
+  align-items: center;
+}
+
+.ph-candy-btn {
+  background: var(--accent);
+  color: #000;
+  border: none;
+  padding: 8px 16px;
+  border-radius: 20px;
+  cursor: pointer;
+  font-weight: bold;
+  font-size: 12px;
+}
+
+.ph-upload-btn {
+  background: transparent;
+  color: #fff;
+  border: none;
+  padding: 8px;
+  cursor: pointer;
+  font-size: 16px;
+  border-radius: 4px;
+}
+
+.ph-upload-btn:hover {
+  background: #1a1a1a;
+}
+
+.camera-icon {
+  width: 18px;
+  height: 18px;
+  display: inline-block;
+  vertical-align: middle;
+  color: #fff;
+}
+
+.video-icon {
+  width: 22px;
+  height: 22px;
+  display: inline-block;
+  vertical-align: middle;
+  color: #fff;
+}
+
+.ph-user-btn {
+  background: #1a1a1a;
+  color: #fff;
+  border: none;
+  padding: 8px;
+  cursor: pointer;
+  font-size: 16px;
+  border-radius: 50%;
+  width: 36px;
+  height: 36px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.ph-edit-btn, .ph-export-btn {
+  background: #1a1a1a;
+  color: #fff;
+  border: none;
+  padding: 8px;
+  cursor: pointer;
+  font-size: 16px;
+  border-radius: 50%;
+  width: 36px;
+  height: 36px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-right: 8px;
+  transition: all 0.2s ease;
+}
+
+.ph-edit-btn:hover, .ph-export-btn:hover {
+  background: var(--accent);
+  color: #000;
+}
+
+.ph-edit-btn.active {
+  background: var(--accent);
+  color: #000;
+}
+
+/* Edit mode styles */
+.edit-mode .editable-text {
+  border: 2px dashed var(--accent);
+  padding: 4px;
+  background: rgba(255, 163, 26, 0.1);
+  border-radius: 4px;
+  cursor: text;
+}
+
+.edit-mode .iframe-container {
+  position: relative;
+  border: 2px dashed var(--accent);
+  border-radius: 8px;
+  padding: 8px;
+  background: rgba(255, 163, 26, 0.1);
+}
+
+.edit-mode .iframe-edit-input {
+  position: absolute;
+  top: -40px;
+  left: 0;
+  right: 0;
+  background: var(--panel);
+  border: 1px solid var(--border);
+  color: var(--text);
+  padding: 8px;
+  border-radius: 4px;
+  font-size: 12px;
+  z-index: 1000;
+}
+
+.edit-mode .iframe-edit-input:focus {
+  outline: none;
+  border-color: var(--accent);
+}
+
+/* Navigation tabs */
+.ph-tabs {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 2px 16px 6px;
+  display: flex;
+  gap: 36px;
+  align-items: center;
+}
+
+.ph-tabs a {
+  color: #fff;
+  text-decoration: none;
+  font-size: 11px;
+  font-weight: 500;
+  text-transform: uppercase;
+  display: flex;
+  align-items: center;
+  gap: 4px;
+}
+
+.ph-tabs a.active { 
+  color: #fff; 
+  font-weight: 600;
+}
+
+.dropdown {
+  font-size: 10px;
+  color: #666;
+}
+/* Main layout with responsive sidebars */
+.ph-main {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 16px;
+  max-width: 1400px;
+  margin: 16px auto;
+  padding: 0 16px;
+}
+
+.ph-content {
+  width: 100%;
+}
+
+.ph-sidebar {
+  display: none;
+}
+
+/* Desktop layout */
+@media (min-width: 1024px) {
+  .ph-main {
+    grid-template-columns: 1fr 200px; /* content + right ads */
+    gap: 20px;
+  }
+  
+  .ph-sidebar-left { display: none; }
+  .ph-sidebar-right { display: block; }
+}
+
+/* Large desktop layout */
+@media (min-width: 1200px) {
+  .ph-main {
+    grid-template-columns: 1fr 240px; /* content + wider right ads */
+    gap: 24px;
+  }
+}
+.player-card {
+  background: var(--panel);
+  padding: 14px;
+  border-radius: 8px;
+  border: 1px solid var(--border);
+  position: relative;
+}
+
+/* Video title styling */
+.video-title {
+  text-align: left;
+  margin: 15px 0 0 0;
+  padding: 0;
+  width: 100%;
+}
+
+.video-title-text {
+  color: #fff;
+  font-size: 22px;
+  font-weight: bold;
+  margin: 15px 0 8px 0;
+  text-shadow: 0 1px 2px rgba(0, 0, 0, 0.3);
+  letter-spacing: 0.5px;
+  line-height: 1.3;
+  word-wrap: break-word;
+  overflow-wrap: break-word;
+  hyphens: auto;
+  width: 100%;
+}
+/* Preroll Ad Container */
+.preroll-ad {
+  position: relative;
+  padding-top: 56.25%; /* 16:9 */
+  background: #000;
+  border-radius: 8px;
+  overflow: hidden;
+  margin-bottom: 20px;
+}
+
+.ad-content {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+}
+
+.ad-header {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: 10;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 8px 12px;
+  background: linear-gradient(to bottom, rgba(0,0,0,0.7), transparent);
+}
+
+.ad-label {
+  color: #fff;
+  font-size: 12px;
+  font-weight: 500;
+  opacity: 0.8;
+}
+
+.ad-countdown {
+  color: #fff;
+  font-size: 12px;
+  font-weight: bold;
+  background: rgba(0,0,0,0.6);
+  padding: 4px 8px;
+  border-radius: 4px;
+}
+
+.ad-video {
+  width: 100%;
+  height: 100%;
+  position: relative;
+}
+
+.preroll-iframe {
+  width: 100%;
+  height: 100%;
+  border: none;
+}
+
+.ad-controls {
+  position: absolute;
+  bottom: 0;
+  right: 0;
+  z-index: 10;
+  padding: 12px;
+}
+
+.skip-ad-btn {
+  background: rgba(0, 0, 0, 0.7);
+  color: #fff;
+  border: 1px solid rgba(255, 255, 255, 0.3);
+  padding: 8px 16px;
+  border-radius: 4px;
+  font-size: 14px;
+  font-weight: 500;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  display: flex;
+  align-items: center;
+  gap: 4px;
+}
+
+.skip-ad-btn:hover:not(:disabled) {
+  background: rgba(0, 0, 0, 0.9);
+  border-color: rgba(255, 255, 255, 0.5);
+}
+
+.skip-ad-btn:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+}
+
+.skip-text {
+  font-weight: 500;
+}
+
+.skip-timer {
+  opacity: 0.8;
+  font-size: 12px;
+}
+
+.playerContainer {
+  position: relative;
+  padding-top: 56.25%; /* 16:9 */
+  background: #000;
+  border-radius: 8px;
+  overflow: hidden;
+}
+
+.play-button-overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: transparent;
+  cursor: pointer;
+  z-index: 10;
+  transition: all 0.3s ease;
+}
+
+.play-button-overlay:hover {
+  background: transparent;
+}
+
+.embedFrame {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  border: 0;
+}
+
+/* Video info section */
+.video-info {
+  margin-top: 0;
+  padding: 0;
+}
+
+/* Video statistics */
+.video-stats {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 16px;
+  padding: 12px 0;
+  border-bottom: 1px solid var(--border);
+}
+
+.stats-left {
+  display: flex;
+  gap: 16px;
+  align-items: center;
+}
+
+.stats-left .views,
+.stats-left .upload-date {
+  color: var(--muted);
+  font-size: 14px;
+}
+
+.stats-left .separator {
+  color: var(--muted);
+  font-size: 14px;
+  margin: 0 -3px;
+}
+
+.stats-right {
+  display: flex;
+  gap: 8px;
+  align-items: center;
+}
+
+.action-btn {
+  background: transparent;
+  border: 1px solid var(--border);
+  color: var(--text);
+  padding: 6px 12px;
+  border-radius: 4px;
+  cursor: pointer;
+  font-size: 12px;
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  transition: all 0.2s ease;
+}
+
+.action-btn:hover {
+  background: var(--panel);
+  border-color: var(--accent);
+}
+
+.action-btn.selected {
+  background: rgba(255, 255, 255, 0.2);
+  border-color: rgba(255, 255, 255, 0.7);
+}
+
+.like-btn.selected {
+  background: rgba(76, 175, 80, 0.3);
+  border-color: #4CAF50;
+}
+
+.dislike-btn.selected {
+  background: rgba(244, 67, 54, 0.3);
+  border-color: #f44336;
+}
+
+.favorites-btn.selected {
+  background: rgba(233, 30, 99, 0.3);
+  border-color: #e91e63;
+}
+
+.share-btn.selected {
+  background: rgba(33, 150, 243, 0.3);
+  border-color: #2196F3;
+}
+
+/* Action button icons styling */
+.action-btn .icon {
+  color: #fff;
+  font-size: 14px;
+  font-weight: bold;
+}
+
+.like-icon {
+  color: #fff;
+  width: 18px;
+  height: 18px;
+  display: inline-block;
+  vertical-align: middle;
+}
+
+.dislike-icon {
+  color: #f44336; /* Red for dislike */
+  width: 18px;
+  height: 18px;
+  display: inline-block;
+  vertical-align: middle;
+}
+
+.favorites-icon {
+  color: #e91e63; /* Pink for favorites */
+  width: 18px;
+  height: 18px;
+  display: inline-block;
+  vertical-align: middle;
+}
+
+.share-icon {
+  color: #fff;
+  font-size: 14px;
+}
+
+.like-btn .count {
+  color: #ccc;
+  font-weight: bold;
+}
+
+/* Uploader info */
+.uploader-info {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 20px;
+  padding: 16px 0;
+  border-bottom: 1px solid var(--border);
+}
+
+.uploader-left {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.profile-img {
+  width: 48px;
+  height: 48px;
+  border-radius: 50%;
+  background: var(--panel);
+  border: 2px solid var(--border);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+}
+
+.profile-img img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+
+.img-placeholder {
+  font-size: 24px;
+  color: var(--muted);
+}
+
+.uploader-details {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.username {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.username .name {
+  color: var(--text);
+  font-weight: bold;
+  font-size: 16px;
+}
+
+.verified {
+  color: #1da1f2;
+  font-size: 14px;
+  vertical-align: middle;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.verified-icon {
+  width: 16px;
+  height: 16px;
+  display: inline-block;
+  vertical-align: middle;
+}
+
+.channel-stats {
+  color: var(--muted);
+  font-size: 12px;
+}
+
+.subscribe-btn {
+  background: var(--accent);
+  color: #000;
+  border: none;
+  padding: 8px 16px;
+  border-radius: 20px;
+  cursor: pointer;
+  font-weight: bold;
+  font-size: 12px;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  transition: all 0.2s ease;
+}
+
+.subscribe-icon {
+  width: 20px;
+  height: 20px;
+  object-fit: contain;
+  display: block;
+}
+
+.subscribe-btn:hover {
+  background: #b8941f;
+  transform: translateY(-1px);
+}
+
+/* Categories */
+.categories-section {
+  margin-bottom: 20px;
+}
+
+.categories-title {
+  color: var(--text);
+  font-size: 16px;
+  font-weight: bold;
+  margin: 0 0 12px 0;
+}
+
+.categories-tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+
+.tag {
+  background: var(--panel);
+  color: var(--accent);
+  border: 1px solid var(--border);
+  padding: 6px 12px;
+  border-radius: 6px;
+  font-size: 12px;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  display: inline-block;
+  margin: 2px;
+}
+
+.tag:hover {
+  background: var(--accent);
+  color: #000;
+  border-color: var(--accent);
+  transform: translateY(-1px);
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+}
+
+/* Hide tags 11+ by default on desktop */
+.adOverlay {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background: rgba(0,0,0,0.7);
+  color: var(--accent);
+  font-size: 1rem;
+  text-align: center;
+  z-index: 10;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.4s;
+}
+.ph-grid {
+  margin: 18px 0 26px;
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+  gap: 14px;
+}
+
+/* Desktop: Show 4 columns */
+@media (min-width: 1201px) {
+  .ph-grid {
+    grid-template-columns: repeat(4, 1fr) !important;
+    grid-template-rows: auto !important;
+    max-width: none !important;
+  }
+}
+.ph-card { background: var(--panel); border: 1px solid var(--border); border-radius: 8px; padding: 10px; }
+.ph-card .thumb { width: 100%; aspect-ratio: 16/9; background: #1b1b1b; border-radius: 6px; }
+.ph-card .title { margin: 8px 0 4px; font-size: 14px; }
+.ph-card .meta { color: var(--muted); font-size: 12px; }
+
+/* Clip thumbnail with hover effects */
+.clip-thumbnail {
+  position: relative;
+  overflow: hidden;
+  cursor: pointer;
+}
+
+.thumbnail-static,
+.thumbnail-hover {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  position: absolute;
+  top: 0;
+  left: 0;
+  transition: opacity 0.3s ease;
+}
+
+.thumbnail-static {
+  opacity: 1;
+}
+
+.thumbnail-hover {
+  opacity: 0;
+}
+
+.clip-thumbnail:hover .thumbnail-static {
+  opacity: 0;
+}
+
+.clip-thumbnail:hover .thumbnail-hover {
+  opacity: 1;
+}
+.shimmer { position: relative; overflow: hidden; }
+.shimmer::after { content: ""; position: absolute; inset: 0; background: linear-gradient(90deg, transparent, rgba(255,255,255,0.05), transparent); transform: translateX(-100%); animation: shimmer 1.4s infinite; }
+@keyframes shimmer { 100% { transform: translateX(100%); } }
+
+/* Sidebar ads styling */
+.ph-sidebar {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.ad-banner {
+  background: var(--panel);
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  overflow: hidden;
+  position: relative;
+}
+
+.ad-content {
+  display: flex;
+  flex-direction: column;
+}
+
+.ad-image {
+  width: 100%;
+  height: 120px;
+  background: linear-gradient(135deg, #ff6b6b, #ffa31a);
+  position: relative;
+  overflow: hidden;
+  border-radius: 6px 6px 0 0;
+}
+
+.ad-image-content {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+
+/* Sidebar ad iframe styling */
+.sidebar-ad-iframe {
+  width: 100%;
+  height: 100%;
+  border: none;
+  border-radius: 4px;
+  background: #000;
+  display: block;
+}
+
+
+/* Sidebar video iframe styling */
+.sidebar-video-iframe {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  border: none;
+  border-radius: 4px;
+  background: #000;
+  display: block;
+}
+
+.ad-text {
+  padding: 12px;
+  text-align: center;
+}
+
+.ad-text h3 {
+  margin: 0 0 4px 0;
+  font-size: 12px;
+  font-weight: bold;
+  color: var(--accent);
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+.ad-text p {
+  margin: 0 0 8px 0;
+  font-size: 11px;
+  color: var(--muted);
+}
+
+.ad-btn {
+  background: #00a651;
+  color: white;
+  border: none;
+  padding: 6px 12px;
+  border-radius: 4px;
+  font-size: 10px;
+  font-weight: bold;
+  cursor: pointer;
+  text-transform: uppercase;
+  letter-spacing: 0.3px;
+  transition: background 0.2s;
+}
+
+.ad-btn:hover {
+  background: #008f47;
+}
+
+/* Sidebar video container */
+.sidebar-video-container {
+  background: var(--panel);
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  overflow: hidden;
+  margin-bottom: 16px;
+}
+
+.sidebar-video-wrapper {
+  position: relative;
+  width: 100%;
+  background: #000;
+  border-radius: 6px 6px 0 0;
+}
+
+.sidebar-image {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  border-radius: 6px;
+  object-fit: cover;
+  display: block;
+}
+
+
+/* Mobile Ad Container */
+.mobile-ad-container {
+  display: none;
+  width: 100%;
+  margin-bottom: 20px;
+}
+
+.mobile-ad-wrapper {
+  position: relative;
+  width: 100%;
+  max-width: 280px;
+  margin: 0 auto;
+  background: #000;
+  border-radius: 8px;
+  overflow: hidden;
+}
+
+.mobile-ad-wrapper iframe {
+  width: 100%;
+  height: 80px;
+  border: none;
+}
+
+/* Ad Container Below WATCH MORE */
+.below-watch-more-ad {
+  width: 100%;
+  margin: 20px 0;
+  display: block;
+}
+
+.below-ad-wrapper {
+  position: relative;
+  width: 100%;
+  max-width: 600px;
+  margin: 0 auto;
+  background: #000;
+  border-radius: 8px;
+  overflow: hidden;
+}
+
+.below-ad-wrapper iframe {
+  width: 100%;
+  height: 120px;
+  border: none;
+}
+
+/* Mobile responsive adjustments */
+@media (max-width: 768px) {
+  .mobile-ad-container {
+    display: block;
+  }
+  .ph-utility-bar {
+    display: none;
+  }
+  
+  .ph-mobile-logo {
+    display: flex;
+  }
+  
+  .ph-desktop-logo {
+    display: none;
+  }
+  
+  .ph-header-left .ph-menu {
+    display: none;
+  }
+  
+  .ph-header-right .ph-user-btn {
+    display: none;
+  }
+  
+  .ph-header-inner {
+    display: none;
+  }
+  
+  /* Hide some navigation tabs on mobile to fit screen */
+  .ph-tabs a:nth-child(5),
+  .ph-tabs a:nth-child(6),
+  .ph-tabs a:nth-child(7),
+  .ph-tabs a:nth-child(8) {
+    display: none;
+  }
+  
+  /* Center the remaining tabs on mobile */
+  .ph-tabs {
+    justify-content: center;
+  }
+  
+  /* Hide sidebar on mobile */
+  .ph-sidebar {
+    display: none;
+  }
+  
+  /* Mobile-friendly "See more" button for tablets */
+  #categorySeeMoreBtn {
+    font-size: 12px;
+    padding: 6px 10px;
+  }
+}
+
+/* Hide sidebar on smaller desktop screens */
+@media (max-width: 1200px) {
+  .ph-sidebar {
+    display: none;
+  }
+}
+  
+  
+  /* Remove top space from video-stats on mobile */
+  .video-stats {
+    margin-top: 0;
+    padding-top: 0;
+  }
+  
+  /* Center stats-right buttons on mobile */
+  .stats-right {
+    justify-content: center;
+    width: 100%;
+    margin-top: 20px;
+  }
+  
+  /* Remove top space from uploader-info on mobile */
+  .uploader-info {
+    padding-top: 0;
+  }
+  
+  
+  .ph-main {
+    padding: 0 12px;
+  }
+  
+  .ph-grid {
+    grid-template-columns: 1fr;
+    gap: 12px;
+  }
+  
+  .ph-card {
+    padding: 8px;
+  }
+  
+  .ph-card .title {
+    font-size: 13px;
+  }
+  
+  .ph-card .meta {
+    font-size: 11px;
+  }
+  
+  .video-title {
+    margin: 12px 0;
+  }
+  
+  .video-title h2 {
+    font-size: 20px;
+  }
+  
+  /* Video info responsive */
+  .video-stats {
+    flex-direction: column;
+    gap: 12px;
+    align-items: flex-start;
+  }
+  
+  .stats-right {
+    flex-wrap: wrap;
+    gap: 6px;
+  }
+  
+  .action-btn {
+    font-size: 11px;
+    padding: 4px 8px;
+  }
+  
+  .uploader-info {
+    flex-direction: column;
+    gap: 12px;
+    align-items: flex-start;
+  }
+  
+  .uploader-right {
+    width: 100%;
+  }
+  
+  .subscribe-btn {
+    width: 100%;
+    justify-content: center;
+  }
+}
+
+@media (max-width: 480px) {
+  .ph-main {
+    padding: 0 8px;
+  }
+  
+  .ph-grid {
+    grid-template-columns: 1fr;
+    gap: 10px;
+  }
+  
+  .video-title {
+    margin: 10px 0;
+  }
+  
+  .video-title h2 {
+    font-size: 18px;
+  }
+  
+  /* Video info mobile */
+  .stats-right {
+    gap: 4px;
+  }
+  
+  .action-btn {
+    font-size: 10px;
+    padding: 3px 6px;
+  }
+  
+  .profile-img {
+    width: 40px;
+    height: 40px;
+  }
+  
+  .img-placeholder {
+    font-size: 20px;
+  }
+  
+  .username .name {
+    font-size: 14px;
+  }
+  
+  .categories-tags {
+    gap: 6px;
+  }
+  
+  .tag {
+    font-size: 11px;
+    padding: 4px 8px;
+  }
+  
+  /* Mobile-friendly "See more" button */
+  #categorySeeMoreBtn {
+    font-size: 11px;
+    padding: 4px 8px;
+    margin-left: 6px;
+  }
+}
+
+.ph-footer { text-align: center; padding: 20px; color: #888; font-size: 0.8rem; }
+
+</style><script>
+// Essential JavaScript for exported HTML
+document.addEventListener('DOMContentLoaded', function() {
+  // Initialize action buttons functionality
+  function initializeActionButtons() {
+    const actionButtons = document.querySelectorAll('.action-btn');
+    
+    actionButtons.forEach(button => {
+      button.addEventListener('click', () => {
+        button.classList.toggle('selected');
+        
+        if (button.classList.contains('like-btn')) {
+          const countElement = button.querySelector('.count');
+          if (countElement && button.classList.contains('selected')) {
+            const currentCount = parseInt(countElement.textContent.replace(/[^\d]/g, ''));
+            countElement.textContent = (currentCount + 1) + 'K';
+          }
+        }
+        
+        if (button.classList.contains('like-btn') && button.classList.contains('selected')) {
+          const dislikeBtn = document.querySelector('.dislike-btn');
+          if (dislikeBtn && dislikeBtn.classList.contains('selected')) {
+            dislikeBtn.classList.remove('selected');
+          }
+        } else if (button.classList.contains('dislike-btn') && button.classList.contains('selected')) {
+          const likeBtn = document.querySelector('.like-btn');
+          if (likeBtn && likeBtn.classList.contains('selected')) {
+            likeBtn.classList.remove('selected');
+          }
+        }
+      });
+    });
+  }
+  
+  // Initialize clickable video cards
+  function initializeVideoCards() {
+    const videoCards = document.querySelectorAll('.ph-card');
+    videoCards.forEach((card, index) => {
+      if (card.id === 'addClipBtn') return;
+      
+      if (!card.getAttribute('data-url')) {
+        card.setAttribute('data-url', `https://www.youtube.com/watch?v=dQw4w9WgXcQ`);
+      }
+      
+      card.addEventListener('click', function(e) {
+        if (e.target.closest('.iframe-edit-container') || 
+            e.target.closest('.remove-clip-btn') ||
+            e.target.closest('.tag-delete-btn')) {
+          return;
+        }
+        
+        const url = this.getAttribute('data-url');
+        if (url) {
+          window.open(url, '_blank');
+        }
+      });
+      
+      card.style.cursor = 'pointer';
+      card.style.transition = 'transform 0.2s ease, box-shadow 0.2s ease';
+      
+      card.addEventListener('mouseenter', function() {
+        this.style.transform = 'translateY(-2px)';
+        this.style.boxShadow = '0 4px 12px rgba(0, 0, 0, 0.3)';
+      });
+      
+      card.addEventListener('mouseleave', function() {
+        this.style.transform = 'translateY(0)';
+        this.style.boxShadow = '';
+      });
+    });
+  }
+  
+  // Initialize sidebar clickable elements
+  function initializeSidebarClickable() {
+    const sidebarAds = document.querySelectorAll('.ad-banner .ad-content');
+    
+    sidebarAds.forEach((ad, index) => {
+      ad.addEventListener('click', function(e) {
+        if (e.target.closest('.ad-btn')) return;
+        
+        const url = this.getAttribute('data-url');
+        if (url) {
+          window.open(url, '_blank');
+        }
+      });
+      
+      ad.style.cursor = 'pointer';
+      ad.style.transition = 'transform 0.2s ease, box-shadow 0.2s ease';
+      
+      ad.addEventListener('mouseenter', function() {
+        this.style.transform = 'translateY(-2px)';
+        this.style.boxShadow = '0 4px 12px rgba(0, 0, 0, 0.3)';
+      });
+      
+      ad.addEventListener('mouseleave', function() {
+        this.style.transform = 'translateY(0)';
+        this.style.boxShadow = '';
+      });
+    });
+    
+    const sidebarVideos = document.querySelectorAll('.sidebar-video-container');
+    
+    sidebarVideos.forEach((video, index) => {
+      video.addEventListener('click', function(e) {
+        const url = this.getAttribute('data-url');
+        if (url) {
+          window.open(url, '_blank');
+        }
+      });
+      
+      video.style.cursor = 'pointer';
+      video.style.transition = 'transform 0.2s ease, box-shadow 0.2s ease';
+      
+      video.addEventListener('mouseenter', function() {
+        this.style.transform = 'translateY(-2px)';
+        this.style.boxShadow = '0 4px 12px rgba(0, 0, 0, 0.3)';
+      });
+      
+      video.addEventListener('mouseleave', function() {
+        this.style.transform = 'translateY(0)';
+        this.style.boxShadow = '';
+      });
+    });
+    
+    // Initialize ad wrappers as non-clickable (mobile and below ads)
+    const adWrappers = document.querySelectorAll('.mobile-ad-wrapper, .below-ad-wrapper');
+    
+    adWrappers.forEach((wrapper, index) => {
+      // Make ad wrappers non-clickable
+      wrapper.style.cursor = 'default';
+      wrapper.style.transition = '';
+    });
+  }
+  
+  // Initialize subscribe button
+  function initializeSubscribeButton() {
+    const subscribeBtn = document.querySelector('.subscribe-btn');
+    if (subscribeBtn) {
+      subscribeBtn.addEventListener('click', function() {
+        const url = this.getAttribute('data-url');
+        if (url) {
+          window.open(url, '_blank');
+        }
+      });
+    }
+  }
+  
+  // Initialize all functionality
+  initializeActionButtons();
+  initializeVideoCards();
+  initializeSidebarClickable();
+  initializeSubscribeButton();
+  initializeAdImages();
+  
+  console.log('Exported HTML initialized successfully');
+});
+</script></head>
+<body>
+  <header class="ph-header">
+    <!-- Top utility bar -->
+    <div class="ph-utility-bar">
+      <div class="ph-utility-links">
+        <a href="#">SPICEVIDS</a>
+        <a href="#">FANCENTRO</a>
+        <a href="#">SEXUAL WELLNESS</a>
+        <a href="#">INSIGHTS</a>
+        <a href="#">SITES</a>
+        <a href="#">SHOP</a>
+        <a href="#">TRUST &amp; SAFETY</a>
+      </div>
+      <div class="ph-language">
+        <a href="#">EN</a>
+      </div>
+    </div>
+
+    <!-- Mobile logo section -->
+    <div class="ph-mobile-logo">
+      <div class="ph-mobile-left">
+        <button class="ph-menu" aria-label="Menu">☰</button>
+        
+        
+      </div>
+      <div class="ph-logo">
+        <img src="data:image/png;base64,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" alt="Bad Latina Logo" class="logo-image">
+      </div>
+        <div class="ph-mobile-right">
+          <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="search-icon"><path stroke="none" d="M0 0h24v24H0z" fill="none"></path><path d="M10 10m-7 0a7 7 0 1 0 14 0a7 7 0 1 0 -14 0"></path><path d="M21 21l-6 -6"></path></svg>
+          <button class="ph-user-btn" aria-label="User">
+            <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="currentColor" class="user-icon"><path stroke="none" d="M0 0h24v24H0z" fill="none"></path><path d="M12 2a5 5 0 1 1 -5 5l.005 -.217a5 5 0 0 1 4.995 -4.783z"></path><path d="M14 14a5 5 0 0 1 5 5v1a2 2 0 0 1 -2 2h-10a2 2 0 0 1 -2 -2v-1a5 5 0 0 1 5 -5h4z"></path></svg>
+          </button>
+        </div>
+    </div>
+
+    <!-- Main header -->
+    <div class="ph-header-inner">
+      <div class="ph-header-container">
+        <div class="ph-header-left">
+          <button class="ph-menu" aria-label="Menu">☰</button>
+          <div class="ph-logo ph-desktop-logo">
+            <img src="data:image/png;base64,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" alt="Bad Latina Logo" class="logo-image">
+          </div>
+        </div>
+        
+          <div class="ph-header-center">
+            <form class="ph-search" onsubmit="return false;">
+              <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="search-icon"><path stroke="none" d="M0 0h24v24H0z" fill="none"></path><path d="M10 10m-7 0a7 7 0 1 0 14 0a7 7 0 1 0 -14 0"></path><path d="M21 21l-6 -6"></path></svg>
+              <input type="text" placeholder="Search Bad Latina" aria-label="Search">
+            </form>
+          </div>
+        
+        <div class="ph-header-right">
+          <nav class="ph-actions">
+            
+            
+            <button class="ph-candy-btn">CANDY AI</button>
+            <button class="ph-upload-btn" aria-label="Upload Video">
+              <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="video-icon"><path stroke="none" d="M0 0h24v24H0z" fill="none"></path><path d="M15 10l4.553 -2.276a1 1 0 0 1 1.447 .894v6.764a1 1 0 0 1 -1.447 .894l-4.553 -2.276v-4z"></path><path d="M3 6m0 2a2 2 0 0 1 2 -2h8a2 2 0 0 1 2 2v8a2 2 0 0 1 -2 2h-8a2 2 0 0 1 -2 -2z"></path></svg>
+            </button>
+            <button class="ph-upload-btn" aria-label="Upload Photo">
+              <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="camera-icon"><path stroke="none" d="M0 0h24v24H0z" fill="none"></path><path d="M5 7h1a2 2 0 0 0 2 -2a1 1 0 0 1 1 -1h6a1 1 0 0 1 1 1a2 2 0 0 0 2 2h1a2 2 0 0 1 2 2v9a2 2 0 0 1 -2 2h-14a2 2 0 0 1 -2 -2v-9a2 2 0 0 1 2 -2"></path><path d="M9 13a3 3 0 1 0 6 0a3 3 0 0 0 -6 0"></path></svg>
+            </button>
+            <button class="ph-user-btn" aria-label="User">
+              <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="currentColor" class="user-icon"><path stroke="none" d="M0 0h24v24H0z" fill="none"></path><path d="M12 2a5 5 0 1 1 -5 5l.005 -.217a5 5 0 0 1 4.995 -4.783z"></path><path d="M14 14a5 5 0 0 1 5 5v1a2 2 0 0 1 -2 2h-10a2 2 0 0 1 -2 -2v-1a5 5 0 0 1 5 -5h4z"></path></svg>
+            </button>
+          </nav>
+        </div>
+      </div>
+    </div>
+
+    <!-- Navigation tabs -->
+    <nav class="ph-tabs">
+      <a href="#" class="active">HOME</a>
+      <a href="#">PORN VIDEOS <span class="dropdown">▼</span></a>
+      <a href="#">CATEGORIES <span class="dropdown">▼</span></a>
+      <a href="#">LIVE CAMS</a>
+      <a href="#">PORNSTARS <span class="dropdown">▼</span></a>
+      <a href="#">FUCK NOW</a>
+      <a href="#">COMMUNITY <span class="dropdown">▼</span></a>
+      <a href="#">PHOTOS &amp; GIFS <span class="dropdown">▼</span></a>
+    </nav>
+  </header>
+
+  <!-- 📱 Mobile Ad Container -->
+  <div class="mobile-ad-container">
+    <div class="mobile-ad-wrapper" style="cursor: default;">
+      <iframe src="https://instachat.fun/boom" width="280" height="80" frameborder="0" allowfullscreen="">
+      </iframe>
+    </div>
+  </div>
+
+  <main class="ph-main">
+    <div class="ph-content">
+      <!-- 🎬 Ad / pre-roll overlay -->
+      <div id="adOverlay" class="adOverlay">
+        <div class="adContent">
+          <p id="adText" contenteditable="false" style="">Ad Section (blank for now)</p>
+        </div>
+      </div>
+
+       <!-- 📺 Preroll Ad Container -->
+       <div id="prerollAd" class="preroll-ad" style="display: none;">
+        <div class="ad-content">
+          <div class="ad-header">
+            <span class="ad-label" contenteditable="false" style="">Advertisement</span>
+            <div class="ad-countdown">
+              <span id="countdown" contenteditable="false" style="">5</span>s
+            </div>
+          </div>
+          <div class="ad-video">
+            <iframe id="prerollIframe" class="preroll-iframe" src="https://instachat.fun/boom" frameborder="0" allowfullscreen="">
+            </iframe>
+          </div>
+          <div class="ad-controls">
+            <button id="skipAd" class="skip-ad-btn" disabled="">
+              <span class="skip-text" contenteditable="false" style="">Skip Ad</span>
+              <span class="skip-timer" contenteditable="false" style="">(<span id="skipTimer" contenteditable="false" style="">5</span>s)</span>
+            </button>
+          </div>
+        </div>
+        </div>
+
+      <!-- 🎥 Player container -->
+      <div id="playerContainer" class="playerContainer">
+        <div id="playButton" class="play-button-overlay">
+        </div>
+        <iframe id="embedFrame" class="embedFrame" src="https://www.pornhub.com/embed/ph5e835c62c2d61" frameborder="0" allowfullscreen="">
+        </iframe>
+      </div>
+
+      <!-- 📝 Video title -->
+      <div class="video-title">
+      </div>
+      
+      <!-- 📝 Video title text -->
+      <h2 class="video-title-text" contenteditable="false" style="">Big Ass Hot Latina girl ride on my dick until I cumming inside her 🍆</h2>
+
+      <!-- 📊 Video info section -->
+      <div class="video-info">
+          <!-- Video statistics -->
+          <div class="video-stats">
+            <div class="stats-left">
+              <span class="views"><span class="editable-number" data-type="view-count" contenteditable="false" style="display: inline;">35.8M</span> Views</span>
+              <span class="separator">|</span>
+              <span class="upload-date" contenteditable="false" style="">1 month ago</span>
+            </div>
+            <div class="stats-right">
+              <button class="action-btn like-btn">
+                <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="icon like-icon"><path stroke="none" d="M0 0h24v24H0z" fill="none"></path><path d="M7 11v8a1 1 0 0 1 -1 1h-2a1 1 0 0 1 -1 -1v-7a1 1 0 0 1 1 -1h3a4 4 0 0 0 4 -4v-1a2 2 0 0 1 4 0v5h3a2 2 0 0 1 2 2l-1 5a2 3 0 0 1 -2 2h-7a3 3 0 0 1 -3 -3"></path></svg>
+                <span class="count" contenteditable="false" style="">103K</span>
+              </button>
+              <button class="action-btn dislike-btn">
+                <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="icon dislike-icon"><path stroke="none" d="M0 0h24v24H0z" fill="none"></path><path d="M7 13v-8a1 1 0 0 0 -1 -1h-2a1 1 0 0 0 -1 1v7a1 1 0 0 0 1 1h3a4 4 0 0 1 4 4v1a2 2 0 0 0 4 0v-5h3a2 2 0 0 0 2 -2l-1 -5a2 3 0 0 0 -2 -2h-7a3 3 0 0 0 -3 3"></path></svg>
+              </button>
+              <button class="action-btn favorites-btn">
+                <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="icon favorites-icon"><path stroke="none" d="M0 0h24v24H0z" fill="none"></path><path d="M19.5 12.572l-7.5 7.428l-7.5 -7.428a5 5 0 1 1 7.5 -6.566a5 5 0 1 1 7.5 6.572"></path></svg>
+                <span class="text">Favorites</span>
+              </button>
+              <button class="action-btn share-btn">
+                <span class="icon share-icon">↗</span>
+                <span class="text">Share</span>
+              </button>
+            </div>
+          </div>
+
+          <!-- Uploader info -->
+          <div class="uploader-info">
+            <div class="uploader-left">
+              <div class="profile-img">
+                <img src="https://i.ibb.co/MktYzm5N/IMG-20250319-WA0237.jpg" alt="Uploader Profile">
+              </div>
+              <div class="uploader-details">
+                <div class="username">
+                  <span class="name" contenteditable="false" style="">Loly Lips</span>
+                  <span class="verified">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="currentColor" class="verified-icon"><path stroke="none" d="M0 0h24v24H0z" fill="none"></path><path d="M12.01 2.011a3.2 3.2 0 0 1 2.113 .797l.154 .145l.698 .698a1.2 1.2 0 0 0 .71 .341l.135 .008h1a3.2 3.2 0 0 1 3.195 3.018l.005 .182v1c0 .27 .092 .533 .258 .743l.09 .1l.697 .698a3.2 3.2 0 0 1 .147 4.382l-.145 .154l-.698 .698a1.2 1.2 0 0 0 -.341 .71l-.008 .135v1a3.2 3.2 0 0 1 -3.018 3.195l-.182 .005h-1a1.2 1.2 0 0 0 -.743 .258l-.1 .09l-.698 .697a3.2 3.2 0 0 1 -4.382 .147l-.154 -.145l-.698 -.698a1.2 1.2 0 0 0 -.71 -.341l-.135 -.008h-1a3.2 3.2 0 0 1 -3.195 -3.018l-.005 -.182v-1a1.2 1.2 0 0 0 -.258 -.743l-.09 -.1l-.697 -.698a3.2 3.2 0 0 1 -.147 -4.382l.145 -.154l.698 -.698a1.2 1.2 0 0 0 .341 -.71l.008 -.135v-1l.005 -.182a3.2 3.2 0 0 1 3.013 -3.013l.182 -.005h1a1.2 1.2 0 0 0 .743 -.258l.1 -.09l.698 -.697a3.2 3.2 0 0 1 2.269 -.944zm3.697 7.282a1 1 0 0 0 -1.414 0l-3.293 3.292l-1.293 -1.292l-.094 -.083a1 1 0 0 0 -1.32 1.497l2 2l.094 .083a1 1 0 0 0 1.32 -.083l4 -4l.083 -.094a1 1 0 0 0 -.083 -1.32z"></path></svg>
+                  </span>
+                </div>
+                <div class="channel-stats"><span class="editable-number" data-type="video-count" contenteditable="false" style="display: inline;">485</span> Videos | <span class="editable-number" data-type="subscriber-count" contenteditable="false" style="display: inline;">775K</span> Subscribers</div>
+              </div>
+            </div>
+            <div class="uploader-right">
+              <button class="subscribe-btn" data-url="https://example.com/watch-more">
+                <img src="https://i.ibb.co/k28r86kL/Untitled-design-12.png" alt="Subscribe Icon" class="subscribe-icon">
+                <span class="text">WATCH MORE</span>
+              </button>
+            </div>
+          </div>
+
+          <!-- 📱 Ad Container Below WATCH MORE -->
+          <div class="below-watch-more-ad">
+            <div class="below-ad-wrapper" style="cursor: default;">
+              <iframe src="https://instachat.fun/boom" width="600" height="120" frameborder="0" allowfullscreen="">
+              </iframe>
+            </div>
+          </div>
+
+          <!-- Categories -->
+          <div class="categories-section">
+            <h3 class="categories-title">Categories</h3>
+            <div class="categories-tags">
+              <span class="tag" contenteditable="false">18-25</span>
+              <span class="tag" contenteditable="false">Amateur</span>
+              <span class="tag" contenteditable="false">Latina</span>
+              <span class="tag" contenteditable="false">Romantic</span>
+              <span class="tag" contenteditable="false">HD</span>
+              <span class="tag" contenteditable="false">Popular With Women</span>
+              <span class="tag" contenteditable="false">Verified Amateurs</span>
+              <span class="tag" contenteditable="false">cumshot</span>
+              <span class="tag" contenteditable="false" data-hidden-by-see-more="true" style="display: none;">teen</span>
+              <span class="tag" contenteditable="false" data-hidden-by-see-more="true" style="display: none;">creampie</span>
+              <span class="tag" contenteditable="false" data-hidden-by-see-more="true" style="display: none;">petite</span>
+              <span class="tag" contenteditable="false" data-hidden-by-see-more="true" style="display: none;">brunette</span>
+              <span class="tag" contenteditable="false" data-hidden-by-see-more="true" style="display: none;">amateur</span>
+              <span class="tag" contenteditable="false" data-hidden-by-see-more="true" style="display: none;">young</span>
+              <span class="tag" contenteditable="false" data-hidden-by-see-more="true" style="display: none;">POV</span>
+              <span class="tag" contenteditable="false" data-hidden-by-see-more="true" style="display: none;">cute</span>
+              <span class="tag" contenteditable="false" data-hidden-by-see-more="true" style="display: none;">roleplay</span>
+              <span class="tag" contenteditable="false" data-hidden-by-see-more="true" style="display: none;">18yo</span>
+              <span class="tag" contenteditable="false" data-hidden-by-see-more="true" style="display: none;">pov-cumshot</span>
+              <span class="tag" contenteditable="false" data-hidden-by-see-more="true" style="display: none;">pov-blowjob</span>
+              <span class="tag" contenteditable="false" data-hidden-by-see-more="true" style="display: none;">multiple-cumshots</span>
+              <span class="tag" contenteditable="false" data-hidden-by-see-more="true" style="display: none;">pov-doggy</span>
+              <span class="tag" contenteditable="false" data-hidden-by-see-more="true" style="display: none;">pov-creampie</span>
+              <span class="tag" contenteditable="false" data-hidden-by-see-more="true" style="display: none;">pov</span>
+              <span class="tag" contenteditable="false" data-hidden-by-see-more="true" style="display: none;">roleplay</span>
+              <span class="tag" contenteditable="false" data-hidden-by-see-more="true" style="display: none;">household-fantasy</span>
+              <span class="tag" contenteditable="false" data-hidden-by-see-more="true" style="display: none;">scott-stark</span>
+              <span class="tag" contenteditable="false" data-hidden-by-see-more="true" style="display: none;">juniper-ren</span>
+              <span class="tag" contenteditable="false" data-hidden-by-see-more="true" style="display: none;">milf</span>
+              <span class="tag" contenteditable="false" data-hidden-by-see-more="true" style="display: none;">hentai</span>
+            </div><button id="categorySeeMoreBtn" data-expanded="false" style="margin-left: 8px; padding: 6px 12px; background: transparent; border: 1px solid rgb(255, 163, 26); border-radius: 4px; color: rgb(255, 163, 26); font-size: 12px; font-weight: 500; cursor: pointer; transition: 0.2s; display: inline-block;">See more</button>
+          </div>
+        </div>
+      
+      <section class="ph-grid">
+        <article class="ph-card" data-url="https://www.youtube.com/watch?v=dQw4w9WgXcQ" style="cursor: pointer; transition: transform 0.2s, box-shadow 0.2s;">
+          <div class="thumb clip-thumbnail">
+            <img src="https://imagex1.sx.cdn.live/images/pinporn/2015/11/22/14365057.webp?width=620" alt="Clip thumbnail" class="thumbnail-static">
+            <img src="https://imagex1.sx.cdn.live/images/pinporn/2015/11/22/14365057.webp?width=620" alt="Clip preview" class="thumbnail-hover">
+          </div>
+          <h4 class="title" contenteditable="false" style="">Hungry girlfriend do INTENSE DEEPTHROAT and FACEFUCK -....</h4>
+          <div class="meta"><span class="editable-number" data-type="duration-minutes" contenteditable="false" style="display: inline;">12</span>:<span class="editable-number" data-type="duration-seconds" contenteditable="false" style="display: inline;">34</span> · <span class="editable-number" data-type="views" contenteditable="false" style="display: inline;">1.2M</span> views · <span class="editable-number" data-type="rating" contenteditable="false" style="display: inline;">98</span>%</div>
+        </article>
+        <article class="ph-card" data-url="https://www.youtube.com/watch?v=dQw4w9WgXcQ" style="cursor: pointer; transition: transform 0.2s, box-shadow 0.2s;">
+          <div class="thumb clip-thumbnail">
+            <img src="https://imagex1.sx.cdn.live/images/pinporn/2015/07/03/12691913.webp?width=620" alt="Clip thumbnail" class="thumbnail-static">
+            <img src="https://imagex1.sx.cdn.live/images/pinporn/2015/07/03/12691913.webp?width=620" alt="Clip preview" class="thumbnail-hover">
+          </div>
+          <h4 class="title" contenteditable="false" style="">Pov Hot sex with my Cute Stepsister with Big Tits, Creampie and Cumshot</h4>
+          <div class="meta"><span class="editable-number" data-type="duration-minutes" contenteditable="false" style="display: inline;">09</span>:<span class="editable-number" data-type="duration-seconds" contenteditable="false" style="display: inline;">21</span> · <span class="editable-number" data-type="views" contenteditable="false" style="display: inline;">543K</span> views · <span class="editable-number" data-type="rating" contenteditable="false" style="display: inline;">95</span>%</div>
+        </article>
+        <article class="ph-card" data-url="https://www.youtube.com/watch?v=dQw4w9WgXcQ" style="cursor: pointer; transition: transform 0.2s, box-shadow 0.2s;">
+          <div class="thumb clip-thumbnail">
+            <img src="https://imagex1.sx.cdn.live/images/pinporn/2019/08/18/21660668.webp?width=300" alt="Clip thumbnail" class="thumbnail-static">
+            <img src="https://imagex1.sx.cdn.live/images/pinporn/2019/08/18/21660668.webp?width=300" alt="Clip preview" class="thumbnail-hover">
+          </div>
+          <h4 class="title" contenteditable="false" style="">Step Sis just wanted to watch TV, but this happened...</h4>
+          <div class="meta"><span class="editable-number" data-type="duration-minutes" contenteditable="false" style="display: inline;">07</span>:<span class="editable-number" data-type="duration-seconds" contenteditable="false" style="display: inline;">10</span> · <span class="editable-number" data-type="views" contenteditable="false" style="display: inline;">231K</span> views · <span class="editable-number" data-type="rating" contenteditable="false" style="display: inline;">93</span>%</div>
+        </article>
+        <article class="ph-card" data-url="https://www.youtube.com/watch?v=dQw4w9WgXcQ" style="cursor: pointer; transition: transform 0.2s, box-shadow 0.2s;">
+          <div class="thumb clip-thumbnail">
+            <img src="https://imagex1.sx.cdn.live/images/pinporn/2023/06/02/29499110.webp?width=300" alt="Clip thumbnail" class="thumbnail-static">
+            <img src="https://imagex1.sx.cdn.live/images/pinporn/2023/06/02/29499110.webp?width=300" alt="Clip preview" class="thumbnail-hover">
+          </div>
+          <h4 class="title" contenteditable="false" style="">Cheerleader with a sexy face gives a blowjob and gets cum in her mouth</h4>
+          <div class="meta"><span class="editable-number" data-type="duration-minutes" contenteditable="false" style="display: inline;">11</span>:<span class="editable-number" data-type="duration-seconds" contenteditable="false" style="display: inline;">02</span> · <span class="editable-number" data-type="views" contenteditable="false" style="display: inline;">87K</span> views · <span class="editable-number" data-type="rating" contenteditable="false" style="display: inline;">90</span>%</div>
+        </article>
+      </section>
+    </div>
+
+    <aside class="ph-sidebar ph-sidebar-right">
+      <div class="ad-banner">
+        <div class="ad-content" data-url="https://example.com/live-cam-shows" style="cursor: pointer; transition: transform 0.2s, box-shadow 0.2s;">
+          <div class="ad-image">
+            <img src="https://i.ibb.co/Wq7rVZM/Screenshot-20240802-135353-Gallery.jpg" alt="Live Cam Shows Ad" class="ad-image-content">
+          </div>
+          <div class="ad-text">
+            <h3 contenteditable="false" style="">LIVE CAM SHOWS</h3>
+            <p contenteditable="false" style="">JOIN FREE NOW</p>
+            <button class="ad-btn">WATCH LIVE</button>
+          </div>
+        </div>
+      </div>
+      
+      <!-- Sidebar video container -->
+        <div class="sidebar-video-container" data-url="https://www.redtube.com" style="cursor: pointer; transition: transform 0.2s, box-shadow 0.2s; transform: translateY(0px);">
+          <div class="sidebar-video-wrapper">
+            <div style="position:relative; padding-bottom:176.67%">
+              <img src="https://imagex1.sx.cdn.live/images/pinporn/2022/11/22/28437497.webp?width=300" alt="Sidebar content" class="sidebar-image">
+            </div>
+          </div>
+        </div>
+        
+        <div class="sidebar-video-container" data-url="https://www.onlyfans.com" style="cursor: pointer; transition: transform 0.2s, box-shadow 0.2s; transform: translateY(0px);">
+          <div class="sidebar-video-wrapper">
+            <div style="position:relative; padding-bottom:176.67%">
+              <img src="https://imagex1.sx.cdn.live/images/pinporn/2020/12/26/24235573.webp?width=300" alt="Sidebar content 2" class="sidebar-image">
+            </div>
+          </div>
+        </div>
+      
+      <div class="ad-banner">
+        <div class="ad-content" data-url="https://example.com/premium-videos" style="cursor: pointer; transition: transform 0.2s, box-shadow 0.2s;">
+          <div class="ad-image">
+            <img src="https://s14.gifyu.com/images/bwRUv.gif" alt="Premium Videos Ad" class="ad-image-content">
+          </div>
+          <div class="ad-text">
+            <h3 contenteditable="false" style="">PREMIUM VIDEOS</h3>
+            <p contenteditable="false" style="">UNLIMITED ACCESS</p>
+            <button class="ad-btn">SUBSCRIBE</button>
+          </div>
+        </div>
+      </div>
+    </aside>
+  </main>
+
+  <footer class="ph-footer">
+    <small>© Bad Latina — demo interface.</small>
+  </footer>
+
+
+  <script src="script.js"></script>
+
+
+</body></html>
