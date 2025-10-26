@@ -1,0 +1,1095 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>BadLatina - Video Player</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            background-color: #000;
+            color: #fff;
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+            padding: 0;
+            margin: 0;
+            min-height: 100vh;
+        }
+
+        .page-wrapper {
+            width: 100%;
+            min-height: 100vh;
+        }
+
+        .container {
+            max-width: 428px;
+            margin: 0 auto;
+            background-color: #000;
+            position: relative;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            padding-bottom: 80px;
+        }
+
+        /* Header */
+        .header {
+            padding: 10px 20px 0;
+        }
+
+        .logo {
+            font-size: 24px;
+            font-weight: bold;
+            color: #fff;
+            display: inline-block;
+        }
+
+        .logo img {
+            max-height: 40px;
+            width: auto;
+            display: block;
+        }
+
+        /* Video Player */
+        .video-container {
+            margin: 0 0 30px 0;
+            border: none;
+            border-radius: 0;
+            background-color: #000;
+            position: relative;
+            overflow: hidden;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 100%;
+        }
+
+        .video-screen {
+            background-color: #000;
+            width: 100%;
+            height: 100%;
+            position: relative;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .video-screen iframe {
+            width: 100%;
+            height: 100%;
+            border: none;
+            display: block;
+            object-fit: cover;
+        }
+
+        .video-controls {
+            background-color: #333;
+            padding: 10px 15px;
+            display: flex;
+            align-items: center;
+            gap: 15px;
+        }
+
+        .control-icons {
+            display: flex;
+            gap: 10px;
+        }
+
+        .control-icon {
+            cursor: pointer;
+            color: #fff;
+            font-size: 18px;
+        }
+
+        .progress-bar-container {
+            flex: 1;
+            height: 4px;
+            background-color: #555;
+            border-radius: 2px;
+            position: relative;
+        }
+
+        .progress-bar {
+            height: 100%;
+            background-color: #ff0000;
+            border-radius: 2px;
+            width: 33%;
+        }
+
+
+
+        /* Ad Section */
+        .ad-container {
+            background-color: #ffeb3b;
+            min-height: 200px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border-radius: 4px;
+            margin: 20px 20px 100px;
+            overflow: hidden;
+        }
+
+        .ad-container img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            display: block;
+        }
+
+        .ad-text {
+            color: #000;
+            font-weight: bold;
+            font-size: 18px;
+        }
+
+        /* Sidebar */
+        .sidebar {
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+        }
+
+        .profile-icon {
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            background: linear-gradient(135deg, #2196F3 0%, #FF9800 100%);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-bottom: 0;
+            margin-right: 10px;
+        }
+
+        .profile-icon svg {
+            width: 60%;
+            height: 60%;
+        }
+
+        .action-button {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 0px;
+            cursor: pointer;
+        }
+
+        .icon-button {
+            width: auto;
+            height: auto;
+            background-color: transparent;
+            border: none;
+            color: #fff;
+            font-size: 24px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            padding: 0;
+        }
+
+        .count {
+            font-size: 12px;
+            color: #fff;
+            font-weight: 600;
+            margin-top: -2px;
+        }
+
+        /* Video Details Row */
+        .video-details-row {
+            display: flex;
+            align-items: flex-start;
+            gap: 15px;
+            margin: -10px 20px 20px;
+        }
+
+        .video-info {
+            flex: 1;
+        }
+
+        .sidebar-navigation {
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+        }
+
+        /* Mobile Layout (up to 767px) */
+        @media (max-width: 767px) {
+            .container {
+                max-width: 100%;
+                margin: 0;
+                padding-left: 0;
+                padding-right: 0;
+                width: 100vw;
+            }
+
+            .header {
+                padding: 10px 15px 0;
+                text-align: center;
+            }
+
+            .video-container {
+                margin: 0;
+                width: 100vw;
+                left: 0;
+                right: 0;
+                position: relative;
+                max-width: none;
+                border: none;
+            }
+
+            .video-screen {
+                width: 100%;
+                height: auto;
+                min-height: 250px;
+            }
+
+            .video-screen iframe {
+                width: 100%;
+                height: 250px;
+                min-height: 250px;
+            }
+
+            .video-details-row {
+                margin: 20px 15px;
+                padding: 0;
+            }
+
+            .video-info {
+                max-width: 100%;
+                margin-bottom: 20px;
+            }
+
+            .ad-container {
+                display: none;
+            }
+
+            .sidebar-navigation {
+                position: fixed;
+                right: 15px;
+                bottom: 120px;
+                z-index: 1001;
+            }
+
+            .nav-arrow-button {
+                width: 65px;
+                height: 65px;
+                margin-bottom: 10px;
+            }
+
+            .nav-arrow-button svg {
+                width: 32px;
+                height: 32px;
+            }
+        }
+
+        /* Small Desktop Layout (768px - 1023px) */
+        @media (min-width: 768px) and (max-width: 1023px) {
+            .container {
+                padding-bottom: 0;
+            }
+            .header {
+                position: fixed;
+                top: 0;
+                left: 0;
+                padding: 20px;
+                z-index: 1001;
+            }
+
+            .video-details-row {
+                margin: -10px 20px 20px;
+                position: relative;
+            }
+
+            .video-info {
+                position: fixed;
+                left: 20px;
+                top: 100px;
+                z-index: 1000;
+                max-width: 300px;
+            }
+
+            .video-info .video-creator {
+                gap: 8px;
+                margin-bottom: 12px;
+            }
+
+            .video-info .creator-name {
+                font-size: 18px;
+            }
+
+            .video-info .profile-icon {
+                width: 45px;
+                height: 45px;
+            }
+
+            .video-info .video-title {
+                font-size: 24px;
+                margin-bottom: 10px;
+                line-height: 1.3;
+            }
+
+            .video-info .video-tags {
+                font-size: 16px;
+                margin-bottom: 15px;
+            }
+
+            .video-info .engagement-stats {
+                gap: 25px;
+                margin-top: 15px;
+            }
+
+            .video-info .stat-item svg {
+                width: 24px;
+                height: 24px;
+            }
+
+            .video-info .stat-item .count {
+                font-size: 18px;
+            }
+
+            .video-info .verified-badge {
+                width: 18px;
+                height: 18px;
+            }
+
+            .ad-container {
+                position: fixed;
+                left: 20px;
+                bottom: 120px;
+                width: 300px;
+                height: 180px;
+                margin: 0;
+                padding: 0;
+                z-index: 1000;
+            }
+
+            .ad-container img {
+                width: 100%;
+                height: 100%;
+                object-fit: cover;
+            }
+
+            .video-container {
+                position: fixed;
+                right: 150px;
+                top: 80px;
+                width: calc(100vw - 600px);
+                height: calc(100vh - 200px);
+                max-width: 500px;
+                max-height: calc(100vh - 200px);
+                z-index: 999;
+            }
+
+            .video-container .video-screen iframe {
+                width: 100%;
+                height: 100%;
+                border: none;
+                display: block;
+                object-fit: cover;
+            }
+
+            .sidebar-navigation {
+                position: fixed;
+                right: 0;
+                top: 50%;
+                transform: translateY(-50%);
+                z-index: 1000;
+                padding-right: 20px;
+            }
+        }
+
+        /* Medium Desktop Layout (1024px - 1199px) */
+        @media (min-width: 1024px) and (max-width: 1199px) {
+            .container {
+                padding-bottom: 0;
+            }
+            .header {
+                position: fixed;
+                top: 0;
+                left: 0;
+                padding: 20px;
+                z-index: 1001;
+            }
+
+            .video-details-row {
+                margin: -10px 20px 20px;
+                position: relative;
+            }
+
+            .video-info {
+                position: fixed;
+                left: 20px;
+                top: 100px;
+                z-index: 1000;
+                max-width: 350px;
+            }
+
+            .video-info .video-creator {
+                gap: 8px;
+                margin-bottom: 12px;
+            }
+
+            .video-info .creator-name {
+                font-size: 20px;
+            }
+
+            .video-info .profile-icon {
+                width: 50px;
+                height: 50px;
+            }
+
+            .video-info .video-title {
+                font-size: 28px;
+                margin-bottom: 10px;
+                line-height: 1.3;
+            }
+
+            .video-info .video-tags {
+                font-size: 18px;
+                margin-bottom: 15px;
+            }
+
+            .video-info .engagement-stats {
+                gap: 30px;
+                margin-top: 15px;
+            }
+
+            .video-info .stat-item svg {
+                width: 28px;
+                height: 28px;
+            }
+
+            .video-info .stat-item .count {
+                font-size: 20px;
+            }
+
+            .video-info .verified-badge {
+                width: 20px;
+                height: 20px;
+            }
+
+            .ad-container {
+                position: fixed;
+                left: 20px;
+                bottom: 120px;
+                width: 350px;
+                height: 200px;
+                margin: 0;
+                padding: 0;
+                z-index: 1000;
+            }
+
+            .ad-container img {
+                width: 100%;
+                height: 100%;
+                object-fit: cover;
+            }
+
+            .video-container {
+                position: fixed;
+                right: 200px;
+                top: 80px;
+                width: calc(100vw - 700px);
+                height: calc(100vh - 200px);
+                max-width: 600px;
+                max-height: calc(100vh - 200px);
+                z-index: 999;
+            }
+
+            .video-container .video-screen iframe {
+                width: 100%;
+                height: 100%;
+                border: none;
+                display: block;
+                object-fit: cover;
+            }
+
+            .sidebar-navigation {
+                position: fixed;
+                right: 0;
+                top: 50%;
+                transform: translateY(-50%);
+                z-index: 1000;
+                padding-right: 20px;
+            }
+        }
+
+        /* Large Desktop Layout (1200px - 1599px) */
+        @media (min-width: 1200px) and (max-width: 1599px) {
+            .container {
+                padding-bottom: 0;
+            }
+            .header {
+                position: fixed;
+                top: 0;
+                left: 0;
+                padding: 20px;
+                z-index: 1001;
+            }
+
+            .video-details-row {
+                margin: -10px 20px 20px;
+                position: relative;
+            }
+
+            .video-info {
+                position: fixed;
+                left: 20px;
+                top: 100px;
+                z-index: 1000;
+                max-width: 400px;
+            }
+
+            .video-info .video-creator {
+                gap: 8px;
+                margin-bottom: 12px;
+            }
+
+            .video-info .creator-name {
+                font-size: 22px;
+            }
+
+            .video-info .profile-icon {
+                width: 55px;
+                height: 55px;
+            }
+
+            .video-info .video-title {
+                font-size: 32px;
+                margin-bottom: 10px;
+                line-height: 1.3;
+            }
+
+            .video-info .video-tags {
+                font-size: 20px;
+                margin-bottom: 15px;
+            }
+
+            .video-info .engagement-stats {
+                gap: 35px;
+                margin-top: 15px;
+            }
+
+            .video-info .stat-item svg {
+                width: 32px;
+                height: 32px;
+            }
+
+            .video-info .stat-item .count {
+                font-size: 22px;
+            }
+
+            .video-info .verified-badge {
+                width: 22px;
+                height: 22px;
+            }
+
+            .ad-container {
+                position: fixed;
+                left: 20px;
+                bottom: 120px;
+                width: 400px;
+                height: 250px;
+                margin: 0;
+                padding: 0;
+                z-index: 1000;
+            }
+
+            .ad-container img {
+                width: 100%;
+                height: 100%;
+                object-fit: cover;
+            }
+
+            .video-container {
+                position: fixed;
+                right: 200px;
+                top: 80px;
+                width: calc(100vw - 800px);
+                height: calc(100vh - 200px);
+                max-width: 700px;
+                max-height: calc(100vh - 200px);
+                z-index: 999;
+            }
+
+            .video-container .video-screen iframe {
+                width: 100%;
+                height: 100%;
+                border: none;
+                display: block;
+                object-fit: cover;
+            }
+
+            .sidebar-navigation {
+                position: fixed;
+                right: 0;
+                top: 50%;
+                transform: translateY(-50%);
+                z-index: 1000;
+                padding-right: 20px;
+            }
+        }
+
+        /* Extra Large Desktop Layout (1600px+) */
+        @media (min-width: 1600px) {
+            .container {
+                padding-bottom: 0;
+            }
+            .header {
+                position: fixed;
+                top: 0;
+                left: 0;
+                padding: 20px;
+                z-index: 1001;
+            }
+
+            .video-details-row {
+                margin: -10px 20px 20px;
+                position: relative;
+            }
+
+            .video-info {
+                position: fixed;
+                left: 20px;
+                top: 100px;
+                z-index: 1000;
+                max-width: 450px;
+            }
+
+            .video-info .video-creator {
+                gap: 8px;
+                margin-bottom: 12px;
+            }
+
+            .video-info .creator-name {
+                font-size: 24px;
+            }
+
+            .video-info .profile-icon {
+                width: 60px;
+                height: 60px;
+            }
+
+            .video-info .video-title {
+                font-size: 36px;
+                margin-bottom: 10px;
+                line-height: 1.3;
+            }
+
+            .video-info .video-tags {
+                font-size: 22px;
+                margin-bottom: 15px;
+            }
+
+            .video-info .engagement-stats {
+                gap: 40px;
+                margin-top: 15px;
+            }
+
+            .video-info .stat-item svg {
+                width: 36px;
+                height: 36px;
+            }
+
+            .video-info .stat-item .count {
+                font-size: 24px;
+            }
+
+            .video-info .verified-badge {
+                width: 24px;
+                height: 24px;
+            }
+
+            .ad-container {
+                position: fixed;
+                left: 20px;
+                bottom: 120px;
+                width: 450px;
+                height: 300px;
+                margin: 0;
+                padding: 0;
+                z-index: 1000;
+            }
+
+            .ad-container img {
+                width: 100%;
+                height: 100%;
+                object-fit: cover;
+            }
+
+            .video-container {
+                position: fixed;
+                right: 200px;
+                top: 80px;
+                width: calc(100vw - 900px);
+                height: calc(100vh - 200px);
+                max-width: 800px;
+                max-height: calc(100vh - 200px);
+                z-index: 999;
+            }
+
+            .video-container .video-screen iframe {
+                width: 100%;
+                height: 100%;
+                border: none;
+                display: block;
+                object-fit: cover;
+            }
+
+            .sidebar-navigation {
+                position: fixed;
+                right: 0;
+                top: 50%;
+                transform: translateY(-50%);
+                z-index: 1000;
+                padding-right: 20px;
+            }
+        }
+
+        /* Ultra-wide Desktop Layout (1920px+) */
+        @media (min-width: 1920px) {
+            .video-container {
+                max-width: 900px;
+            }
+            
+            .video-info {
+                max-width: 500px;
+            }
+            
+            .ad-container {
+                width: 500px;
+                height: 350px;
+            }
+        }
+
+        /* Safety margins for very small desktop screens */
+        @media (min-width: 768px) and (max-width: 900px) {
+            .video-container {
+                right: 100px;
+                width: calc(100vw - 500px);
+                max-width: 400px;
+            }
+            
+            .video-info {
+                max-width: 250px;
+            }
+            
+            .ad-container {
+                width: 250px;
+                height: 150px;
+            }
+        }
+
+        .nav-button-group {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 0px;
+        }
+
+        .nav-button-group .nav-label {
+            font-size: 12px;
+            color: #fff;
+            text-align: center;
+            margin-top: -2px;
+        }
+
+        .video-creator {
+            display: flex;
+            align-items: center;
+            gap: 5px;
+            margin-bottom: 8px;
+        }
+
+        .creator-name {
+            font-size: 14px;
+            color: #fff;
+        }
+
+        .verified-badge {
+            width: 16px;
+            height: 16px;
+            background-color: #2196F3;
+            border-radius: 50%;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .verified-badge::after {
+            content: '✓';
+            color: #fff;
+            font-size: 10px;
+            font-weight: bold;
+        }
+
+        .video-title {
+            font-size: 18px;
+            font-weight: bold;
+            margin-bottom: 6px;
+            line-height: 1.3;
+        }
+
+        .video-tags {
+            font-size: 14px;
+            color: #aaa;
+            margin-bottom: 10px;
+        }
+
+        /* Engagement Stats */
+        .engagement-stats {
+            display: flex;
+            gap: 20px;
+            align-items: center;
+            margin-top: 10px;
+        }
+
+        .stat-item {
+            display: flex;
+            align-items: center;
+            gap: 5px;
+        }
+
+        .stat-item svg {
+            width: 20px;
+            height: 20px;
+        }
+
+        .stat-item .count {
+            font-size: 14px;
+            color: #fff;
+            margin: 0;
+        }
+
+        /* Navigation Arrow Buttons */
+        .nav-arrow-button {
+            background-color: transparent;
+            border: 2px solid #fff;
+            color: #fff;
+            width: 60px;
+            height: 60px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            padding: 0;
+        }
+
+        .nav-arrow-button:hover {
+            background-color: #fff;
+            color: #000;
+        }
+
+        .nav-arrow-button:active {
+            transform: scale(0.95);
+        }
+
+        .nav-arrow-button svg {
+            width: 28px;
+            height: 28px;
+        }
+
+        /* Bottom Navigation */
+        .bottom-nav {
+            position: fixed;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            background-color: #111;
+            border-top: 1px solid #333;
+            display: flex;
+            justify-content: space-around;
+            padding: 10px 0 20px;
+            z-index: 100;
+        }
+
+        .nav-item {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 5px;
+            cursor: pointer;
+            color: #fff;
+            font-size: 20px;
+            transition: color 0.2s;
+        }
+
+        .nav-item:hover {
+            color: #ffeb3b;
+        }
+
+        .nav-item.trending {
+            color: #ff9800;
+        }
+
+        .nav-item.trending:hover {
+            color: #ff9800;
+            opacity: 0.8;
+        }
+
+        .nav-label {
+            font-size: 12px;
+            margin-top: 2px;
+        }
+
+        /* Icons */
+        .icon {
+            display: inline-block;
+            width: 24px;
+            height: 24px;
+        }
+    </style>
+</head>
+<body>
+    <div class="page-wrapper">
+            <div class="container" id="mainContainer">
+        <!-- Header -->
+        <header class="header">
+            <div class="logo">
+                <img src="jjj.png" alt="BadLatina Logo">
+            </div>
+        </header>
+
+        <!-- Video Player -->
+        <div class="video-container">
+            <div class="video-screen">
+                <iframe allow="fullscreen;autoplay" allowfullscreen src="https://streamable.com/e/zxsqix?autoplay=1&loop=0" style="border:none;"></iframe>
+            </div>
+        </div>
+
+        <!-- Video Details -->
+        <div class="video-details-row">
+            <!-- Video Info -->
+            <div class="video-info">
+                <div class="video-creator">
+                    <div class="profile-icon">
+                        <svg viewBox="0 0 24 24" fill="white">
+                            <circle cx="12" cy="8" r="3"/>
+                            <path d="M12 14c-3.3 0-6 1.34-6 3v1h12v-1c0-1.66-2.7-3-6-3z"/>
+                        </svg>
+                    </div>
+                    <span class="creator-name">Lana Rhoads</span>
+                    <span class="verified-badge"></span>
+                </div>
+                <div class="video-title">Naughty Stepsiter Loves to fuck</div>
+                <div class="video-tags">Stepsis, big ass, latina, big tits, anal</div>
+                
+                <!-- Like and Views Info -->
+                <div class="engagement-stats">
+                    <div class="stat-item" id="likeButton" style="cursor: pointer;">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="currentColor" class="icon icon-tabler icons-tabler-filled icon-tabler-heart" id="heartIcon"><path stroke="none" d="M0 0h24v24H0z" fill="none"/><path d="M6.979 3.074a6 6 0 0 1 4.988 1.425l.037 .033l.034 -.03a6 6 0 0 1 4.733 -1.44l.246 .036a6 6 0 0 1 3.364 10.008l-.18 .185l-.048 .041l-7.45 7.379a1 1 0 0 1 -1.313 .082l-.094 -.082l-7.493 -7.422a6 6 0 0 1 3.176 -10.215z" /></svg>
+                        <span class="count">53K</span>
+                    </div>
+                    <div class="stat-item">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="icon icon-tabler icons-tabler-outline icon-tabler-eye"><path stroke="none" d="M0 0h24v24H0z" fill="none"/><path d="M10 12a2 2 0 1 0 4 0a2 2 0 0 0 -4 0" /><path d="M21 12c-2.4 4 -5.4 6 -9 6c-3.6 0 -6.6 -2 -9 -6c2.4 -4 5.4 -6 9 -6c3.6 0 6.6 2 9 6" /></svg>
+                        <span class="count">387K</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Navigation Buttons -->
+            <div class="sidebar-navigation">
+                <div class="nav-button-group">
+                    <button class="nav-arrow-button prev-button">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z" fill="none"/><path d="M12 5l0 14" /><path d="M18 11l-6 -6" /><path d="M6 11l6 -6" /></svg>
+                    </button>
+                    <span class="nav-label">Previous</span>
+                </div>
+                <div class="nav-button-group">
+                    <button class="nav-arrow-button next-button">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z" fill="none"/><path d="M12 5l0 14" /><path d="M18 13l-6 6" /><path d="M6 13l6 6" /></svg>
+                    </button>
+                    <span class="nav-label">Next</span>
+                </div>
+            </div>
+        </div>
+
+        <!-- Ad Section -->
+        <div class="ad-container">
+            <img src="https://imagex1.sx.cdn.live/images/pinporn/2021/10/01/25989628.webp?width=300" alt="Ad">
+        </div>
+
+        <!-- Bottom Navigation -->
+        <nav class="bottom-nav">
+            <div class="nav-item">
+                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="icon icon-tabler icons-tabler-outline icon-tabler-home"><path stroke="none" d="M0 0h24v24H0z" fill="none"/><path d="M5 12l-2 0l9 -9l9 9l-2 0" /><path d="M5 12v7a2 2 0 0 0 2 2h10a2 2 0 0 0 2 -2v-7" /><path d="M9 21v-6a2 2 0 0 1 2 -2h2a2 2 0 0 1 2 2v6" /></svg>
+                <div class="nav-label">Home</div>
+            </div>
+            <div class="nav-item">
+                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="icon icon-tabler icons-tabler-outline icon-tabler-users-group"><path stroke="none" d="M0 0h24v24H0z" fill="none"/><path d="M10 13a2 2 0 1 0 4 0a2 2 0 0 0 -4 0" /><path d="M8 21v-1a2 2 0 0 1 2 -2h4a2 2 0 0 1 2 2v1" /><path d="M15 5a2 2 0 1 0 4 0a2 2 0 0 0 -4 0" /><path d="M17 10h2a2 2 0 0 1 2 2v1" /><path d="M5 5a2 2 0 1 0 4 0a2 2 0 0 0 -4 0" /><path d="M3 13v-1a2 2 0 0 1 2 -2h2" /></svg>
+                <div class="nav-label">Models</div>
+            </div>
+            <div class="nav-item trending">
+                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="currentColor" class="icon icon-tabler icons-tabler-filled icon-tabler-flame"><path stroke="none" d="M0 0h24v24H0z" fill="none"/><path d="M10 2c0 -.88 1.056 -1.331 1.692 -.722c1.958 1.876 3.096 5.995 1.75 9.12l-.08 .174l.012 .003c.625 .133 1.203 -.43 2.303 -2.173l.14 -.224a1 1 0 0 1 1.582 -.153c1.334 1.435 2.601 4.377 2.601 6.27c0 4.265 -3.591 7.705 -8 7.705s-8 -3.44 -8 -7.706c0 -2.252 1.022 -4.716 2.632 -6.301l.605 -.589c.241 -.236 .434 -.43 .618 -.624c1.43 -1.512 2.145 -2.924 2.145 -4.78" /></svg>
+                <div class="nav-label">Trending</div>
+            </div>
+            <div class="nav-item">
+                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="icon icon-tabler icons-tabler-outline icon-tabler-category"><path stroke="none" d="M0 0h24v24H0z" fill="none"/><path d="M4 4h6v6h-6z" /><path d="M14 4h6v6h-6z" /><path d="M4 14h6v6h-6z" /><path d="M17 17m-3 0a3 3 0 1 0 6 0a3 3 0 1 0 -6 0" /></svg>
+                <div class="nav-label">Category</div>
+            </div>
+            <div class="nav-item">
+                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="icon icon-tabler icons-tabler-outline icon-tabler-search"><path stroke="none" d="M0 0h24v24H0z" fill="none"/><path d="M10 10m-7 0a7 7 0 1 0 14 0a7 7 0 1 0 -14 0" /><path d="M21 21l-6 -6" /></svg>
+                <div class="nav-label">Search</div>
+            </div>
+        </nav>
+            </div>
+    </div>
+
+                <script>
+        // Navigation button functionality
+        document.addEventListener('DOMContentLoaded', function() {
+            const prevButton = document.querySelector('.prev-button');
+            const nextButton = document.querySelector('.next-button');
+            
+            // Get current page number from URL or default to 1
+            const currentPage = window.location.pathname.match(/page(\d+)\.html/) ? 
+                parseInt(window.location.pathname.match(/page(\d+)\.html/)[1]) : 1;
+            
+            // Previous button click
+            prevButton.addEventListener('click', function() {
+                if (currentPage > 1) {
+                    const prevPage = currentPage - 1;
+                    window.location.href = prevPage === 1 ? 'index.html' : `page${prevPage}.html`;
+                }
+            });
+            
+            // Next button click
+            nextButton.addEventListener('click', function() {
+                const nextPage = currentPage + 1;
+                window.location.href = `page${nextPage}.html`;
+            });
+            
+            // Disable previous button if on first page
+            if (currentPage === 1) {
+                prevButton.style.opacity = '0.5';
+                prevButton.style.cursor = 'not-allowed';
+                prevButton.addEventListener('click', function(e) {
+                    e.preventDefault();
+                });
+            }
+
+            // Like button functionality
+            const likeButton = document.getElementById('likeButton');
+            const heartIcon = document.getElementById('heartIcon');
+            let isLiked = false;
+            
+            likeButton.addEventListener('click', function() {
+                isLiked = !isLiked;
+                if (isLiked) {
+                    heartIcon.style.fill = '#ff9800';
+                } else {
+                    heartIcon.style.fill = 'currentColor';
+                }
+            });
+        });
+        </script>
+</body>
+</html>
