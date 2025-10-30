@@ -1,0 +1,647 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Sunco - Form 2.2 - Field Level Hazard Assessment</title>
+<style>
+  body {
+    font-family: Arial, sans-serif;
+    margin: 20px;
+    background-color: #fff;
+    color: #000;
+  }
+
+  /* Constrain page to A4-friendly width on screen and export */
+  .page { max-width: 190mm; margin: 0 auto; }
+
+  h1 {
+    text-align: center;
+    font-size: 18px;
+    margin-bottom: 10px;
+    text-transform: uppercase;
+    border-bottom: 2px solid #000;
+    padding-bottom: 6px;
+  }
+
+  table {
+    border-collapse: collapse;
+    width: 100%;
+    margin-bottom: 20px;
+  }
+
+  th, td {
+    border: 1px solid #000;
+    padding: 6px 8px;
+    vertical-align: top;
+  }
+
+  th {
+    background-color: #f3f3f3;
+    text-align: left;
+  }
+
+  label {
+    font-weight: bold;
+  }
+
+  input[type="text"], input[type="date"], input[type="time"], textarea {
+    width: 100%;
+    border: none;
+    outline: none;
+    font-size: 14px;
+    font-family: inherit;
+  }
+
+  textarea {
+    resize: none;
+  }
+
+  .section-title {
+    font-weight: bold;
+    text-transform: uppercase;
+    background-color: #ddd;
+    text-align: center;
+    padding: 5px;
+    margin-top: 20px;
+    border: 1px solid #000;
+  }
+
+  .submit-btn {
+    display: block;
+    margin: 20px auto;
+    padding: 10px 25px;
+    font-size: 16px;
+    cursor: pointer;
+    background-color: #000;
+    color: #fff;
+    border: none;
+    border-radius: 4px;
+  }
+
+  @media print {
+    .submit-btn { display: none; }
+    @page { size: A4 portrait; margin: 8mm; }
+    body { margin: 0; }
+    .page { max-width: 190mm; }
+  }
+
+  .grid-2 {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 14px;
+  }
+
+  .center {
+    text-align: center;
+  }
+  .v-middle { vertical-align: middle !important; }
+
+  .small {
+    font-size: 12px;
+  }
+
+  .no-wrap {
+    white-space: nowrap;
+  }
+
+  .no-border td,
+  .no-border th {
+    border: none;
+  }
+
+  .tight td {
+    padding: 4px 6px;
+  }
+
+  .muted {
+    color: #444;
+  }
+  .yn { display:flex; justify-content:center; align-items:center; gap:16px; }
+  .yn label { display:flex; align-items:center; gap:6px; }
+  .yn-inline { display:inline-flex; align-items:center; gap:6px; }
+  .risk-input { width: 48px; text-align:center; border: none; background: transparent; font-weight: bold; }
+  .date3 { display:flex; justify-content:center; gap:6px; }
+  .date3 input { width: 26px; text-align:center; }
+  .top-input { min-width: 240px; }
+  .desktop-only { display: table-row; }
+  .mobile-only { display: none; }
+  .top-mobile { display: none; }
+  .top-mobile-table { display: none; width: 100%; }
+  .flha-label { width: 30%; }
+  .yesno-col { width: 10%; text-align: center; }
+  .top-table th, .top-table td { white-space: nowrap; }
+  .line-input { width: 100%; border: none; border-bottom: 1px solid #000; padding: 8px 4px; font-size: 14px; background: transparent; }
+  .avoid-break { break-inside: avoid; page-break-inside: avoid; }
+
+  /* Responsive adjustments */
+  @media (max-width: 1024px) {
+    body { margin: 16px; }
+    h1 { font-size: 17px; }
+    th, td { padding: 5px 6px; }
+  }
+
+  @media (max-width: 768px) {
+    body { margin: 12px; }
+    .page { max-width: 100%; }
+    h1 { font-size: 16px; }
+    th, td { padding: 5px 6px; font-size: 14px; }
+    input[type="text"], input[type="date"], input[type="time"], textarea { font-size: 14px; }
+    .grid-2 { grid-template-columns: 1fr; gap: 10px; }
+    table { display: block; overflow-x: auto; -webkit-overflow-scrolling: touch; }
+    .desktop-only { display: none !important; }
+    .mobile-only { display: table-row; }
+    .top-table { display: none; }
+    .top-mobile { display: block; }
+    .top-mobile-table { display: table; }
+  }
+
+  @media (max-width: 480px) {
+    body { margin: 10px; }
+    h1 { font-size: 15px; }
+    th, td { padding: 3px 4px; font-size: 11px; }
+    .submit-btn { padding: 8px 18px; font-size: 14px; }
+  }
+</style>
+</head>
+<body>
+
+<div class="page">
+
+<h1>Sunco - Form 2.2 - Field Level Hazard Assessment</h1>
+
+<!-- Top Information Row (desktop/tablet) -->
+<table class="top-table avoid-break">
+  <tr>
+    <th class="no-wrap">Date:</th>
+    <td><input type="date" name="date" class="top-input"></td>
+    <th class="no-wrap">Project Name:</th>
+    <td><input type="text" name="project_name" class="top-input"></td>
+    <th class="no-wrap">Muster Point:</th>
+    <td><input type="text" name="muster_point" class="top-input"></td>
+  </tr>
+  <tr class="desktop-only">
+    <th class="no-wrap">Worker Name:</th>
+    <td><input type="text" name="worker_name"></td>
+    <th class="flha-label">This FLHA is for more than one person:</th>
+    <td class="center" colspan="3"><div class="yn" style="justify-content:center;"><label><input type="checkbox" name="multi_yes"> Yes</label><label><input type="checkbox" name="multi_no"> No</label></div></td>
+  </tr>
+  <tr class="mobile-only">
+    <th class="no-wrap">Worker Name:</th>
+    <td colspan="5"><input type="text" name="worker_name_m" ></td>
+  </tr>
+  <tr class="mobile-only">
+    <th colspan="2">This FLHA is for more than one person:</th>
+    <td colspan="4" class="center"><div class="yn"><label><input type="checkbox" name="multi_yes_m"> Yes</label><label><input type="checkbox" name="multi_no_m"> No</label></div></td>
+  </tr>
+</table>
+
+<!-- Top Information (mobile stacked inside table cells) -->
+<table class="top-mobile-table avoid-break">
+  <tr>
+    <th class="no-wrap">Date:</th>
+    <td><input type="date" name="date" style="width:100%;"></td>
+  </tr>
+  <tr>
+    <th class="no-wrap">Worker Name:</th>
+    <td><input type="text" name="worker_name" style="width:100%;"></td>
+  </tr>
+  <tr>
+    <th class="no-wrap">Project Name:</th>
+    <td><input type="text" name="project_name" style="width:100%;"></td>
+  </tr>
+  <tr>
+    <th class="no-wrap">Muster Point:</th>
+    <td><input type="text" name="muster_point" style="width:100%;"></td>
+  </tr>
+  <tr>
+    <th>This FLHA is for more than one person:</th>
+    <td class="center"><div class="yn" style="justify-content:center;"><label><input type="checkbox" name="multi_yes"> Yes</label><label><input type="checkbox" name="multi_no"> No</label></div></td>
+  </tr>
+</table>
+
+<!-- Main Task/Hazard/Control Table -->
+<table class="avoid-break">
+  <tr>
+    <th style="width:20%;" class="center v-middle">Task</th>
+    <th style="width:22%;" class="center v-middle">Hazard</th>
+    <th style="width:33%;" class="center v-middle">Control Measure</th>
+    <th style="width:8%;" class="center v-middle">Severity</th>
+    <th style="width:8%;" class="center v-middle">Probability</th>
+    <th style="width:9%;" class="center v-middle">Risk<br>(Severity x Probability)</th>
+  </tr>
+  <!-- 10 rows -->
+  <tr>
+    <td><textarea rows="2" name="t1"></textarea></td>
+    <td><textarea rows="2" name="h1"></textarea></td>
+    <td><textarea rows="2" name="c1"></textarea></td>
+    <td class="center"><input type="text" name="s1" class="center small"></td>
+    <td class="center"><input type="text" name="p1" class="center small"></td>
+    <td class="center"><input class="risk-input" name="r1" placeholder="__/9"></td>
+  </tr>
+  <tr>
+    <td><textarea rows="2" name="t2"></textarea></td>
+    <td><textarea rows="2" name="h2"></textarea></td>
+    <td><textarea rows="2" name="c2"></textarea></td>
+    <td class="center"><input type="text" name="s2" class="center small"></td>
+    <td class="center"><input type="text" name="p2" class="center small"></td>
+    <td class="center"><input class="risk-input" name="r2" placeholder="__/9"></td>
+  </tr>
+  <tr>
+    <td><textarea rows="2" name="t3"></textarea></td>
+    <td><textarea rows="2" name="h3"></textarea></td>
+    <td><textarea rows="2" name="c3"></textarea></td>
+    <td class="center"><input type="text" name="s3" class="center small"></td>
+    <td class="center"><input type="text" name="p3" class="center small"></td>
+    <td class="center"><input class="risk-input" name="r3" placeholder="__/9"></td>
+  </tr>
+  <tr>
+    <td><textarea rows="2" name="t4"></textarea></td>
+    <td><textarea rows="2" name="h4"></textarea></td>
+    <td><textarea rows="2" name="c4"></textarea></td>
+    <td class="center"><input type="text" name="s4" class="center small"></td>
+    <td class="center"><input type="text" name="p4" class="center small"></td>
+    <td class="center"><input class="risk-input" name="r4" placeholder="__/9"></td>
+  </tr>
+  <tr>
+    <td><textarea rows="2" name="t5"></textarea></td>
+    <td><textarea rows="2" name="h5"></textarea></td>
+    <td><textarea rows="2" name="c5"></textarea></td>
+    <td class="center"><input type="text" name="s5" class="center small"></td>
+    <td class="center"><input type="text" name="p5" class="center small"></td>
+    <td class="center"><input class="risk-input" name="r5" placeholder="__/9"></td>
+  </tr>
+  <tr>
+    <td><textarea rows="2" name="t6"></textarea></td>
+    <td><textarea rows="2" name="h6"></textarea></td>
+    <td><textarea rows="2" name="c6"></textarea></td>
+    <td class="center"><input type="text" name="s6" class="center small"></td>
+    <td class="center"><input type="text" name="p6" class="center small"></td>
+    <td class="center"><input class="risk-input" name="r6" placeholder="__/9"></td>
+  </tr>
+  <tr>
+    <td><textarea rows="2" name="t7"></textarea></td>
+    <td><textarea rows="2" name="h7"></textarea></td>
+    <td><textarea rows="2" name="c7"></textarea></td>
+    <td class="center"><input type="text" name="s7" class="center small"></td>
+    <td class="center"><input type="text" name="p7" class="center small"></td>
+    <td class="center"><input class="risk-input" name="r7" placeholder="__/9"></td>
+  </tr>
+  <tr>
+    <td><textarea rows="2" name="t8"></textarea></td>
+    <td><textarea rows="2" name="h8"></textarea></td>
+    <td><textarea rows="2" name="c8"></textarea></td>
+    <td class="center"><input type="text" name="s8" class="center small"></td>
+    <td class="center"><input type="text" name="p8" class="center small"></td>
+    <td class="center"><input class="risk-input" name="r8" placeholder="__/9"></td>
+  </tr>
+  <tr>
+    <td><textarea rows="2" name="t9"></textarea></td>
+    <td><textarea rows="2" name="h9"></textarea></td>
+    <td><textarea rows="2" name="c9"></textarea></td>
+    <td class="center"><input type="text" name="s9" class="center small"></td>
+    <td class="center"><input type="text" name="p9" class="center small"></td>
+    <td class="center"><input class="risk-input" name="r9" placeholder="__/9"></td>
+  </tr>
+  <tr>
+    <td><textarea rows="2" name="t10"></textarea></td>
+    <td><textarea rows="2" name="h10"></textarea></td>
+    <td><textarea rows="2" name="c10"></textarea></td>
+    <td class="center"><input type="text" name="s10" class="center small"></td>
+    <td class="center"><input type="text" name="p10" class="center small"></td>
+    <td class="center"><input class="risk-input" name="r10" placeholder="__/9"></td>
+  </tr>
+</table>
+
+<!-- Severity & Probability Guidance and Matrix -->
+<div class="grid-2">
+  <table class="avoid-break">
+    <tr><th colspan="2" class="center">Severity</th></tr>
+    <tr>
+      <td class="no-wrap"><strong>Low - 1</strong></td>
+      <td>Non serious injury, illness or damage.</td>
+    </tr>
+    <tr>
+      <td class="no-wrap"><strong>Medium - 2</strong></td>
+      <td>Severe injury, illness or property damage.</td>
+  </tr>
+  <tr>
+      <td class="no-wrap"><strong>High - 3</strong></td>
+      <td>Causing death or permanent impairment.</td>
+    </tr>
+    <tr><th colspan="2" class="center">Probability</th></tr>
+    <tr>
+      <td class="no-wrap"><strong>Low - 1</strong></td>
+      <td>Remote, could occur at some point.</td>
+  </tr>
+  <tr>
+      <td class="no-wrap"><strong>Medium - 2</strong></td>
+      <td>Likely to occur eventually.</td>
+  </tr>
+  <tr>
+      <td class="no-wrap"><strong>High - 3</strong></td>
+      <td>Likely to occur immediately or very soon.</td>
+  </tr>
+</table>
+
+  <table class="tight">
+    <tr><th colspan="4" class="center">Severity</th></tr>
+    <tr>
+      <th></th>
+      <th class="center">LOW</th>
+      <th class="center">MED</th>
+      <th class="center">HIGH</th>
+    </tr>
+    <tr>
+      <th class="no-wrap">LOW</th>
+      <td class="center">1</td>
+      <td class="center">2</td>
+      <td class="center">3</td>
+    </tr>
+    <tr>
+      <th class="no-wrap">MED</th>
+      <td class="center">2</td>
+      <td class="center">4</td>
+      <td class="center">6</td>
+    </tr>
+    <tr>
+      <th class="no-wrap">HIGH</th>
+      <td class="center">3</td>
+      <td class="center">6</td>
+      <td class="center">9</td>
+    </tr>
+  </table>
+</div>
+
+<!-- Task Hazards Checklist -->
+<table class="avoid-break">
+  <tr>
+    <th colspan="4" class="center">Task Hazards</th>
+  </tr>
+  <tr>
+    <th></th>
+    <th class="center">YES</th>
+    <th class="center">NO</th>
+    <th class="center">Notes</th>
+  </tr>
+  <tr><td>Silica Exposure Risk?</td><td class="center"><div class="yn"><input type="checkbox" name="haz_silica_yes"></div></td><td class="center"><div class="yn"><input type="checkbox" name="haz_silica_no"></div></td><td><input type="text" name="haz_silica_notes"></td></tr>
+  <tr><td>Confined Space Entry?</td><td class="center"><div class="yn"><input type="checkbox" name="haz_confined_yes"></div></td><td class="center"><div class="yn"><input type="checkbox" name="haz_confined_no"></div></td><td><input type="text" name="haz_confined_notes"></td></tr>
+  <tr><td>Mobile Equipment Present?</td><td class="center"><div class="yn"><input type="checkbox" name="haz_mobile_yes"></div></td><td class="center"><div class="yn"><input type="checkbox" name="haz_mobile_no"></div></td><td><input type="text" name="haz_mobile_notes"></td></tr>
+  <tr><td>Risk of Fire or Explosion?</td><td class="center"><div class="yn"><input type="checkbox" name="haz_fire_yes"></div></td><td class="center"><div class="yn"><input type="checkbox" name="haz_fire_no"></div></td><td><input type="text" name="haz_fire_notes"></td></tr>
+  <tr><td>Scaffold Erecting/Dismantling?</td><td class="center"><div class="yn"><input type="checkbox" name="haz_scaffold_yes"></div></td><td class="center"><div class="yn"><input type="checkbox" name="haz_scaffold_no"></div></td><td><input type="text" name="haz_scaffold_notes"></td></tr>
+  <tr><td>Control Zone Required?</td><td class="center"><div class="yn"><input type="checkbox" name="haz_cz_yes"></div></td><td class="center"><div class="yn"><input type="checkbox" name="haz_cz_no"></div></td><td><input type="text" name="haz_cz_notes"></td></tr>
+  <tr><td>Extreme Temperature Hazard?</td><td class="center"><div class="yn"><input type="checkbox" name="haz_temp_yes"></div></td><td class="center"><div class="yn"><input type="checkbox" name="haz_temp_no"></div></td><td><input type="text" name="haz_temp_notes"></td></tr>
+  <tr><td>Adequate Ventilation?</td><td class="center"><div class="yn"><input type="checkbox" name="haz_vent_yes"></div></td><td class="center"><div class="yn"><input type="checkbox" name="haz_vent_no"></div></td><td><input type="text" name="haz_vent_notes"></td></tr>
+  <tr><td>Other Workers Above or Below?</td><td class="center"><div class="yn"><input type="checkbox" name="haz_above_yes"></div></td><td class="center"><div class="yn"><input type="checkbox" name="haz_above_no"></div></td><td><input type="text" name="haz_above_notes"></td></tr>
+  <tr><td>Appropriate Anchor Points?</td><td class="center"><div class="yn"><input type="checkbox" name="haz_anchor_yes"></div></td><td class="center"><div class="yn"><input type="checkbox" name="haz_anchor_no"></div></td><td><input type="text" name="haz_anchor_notes"></td></tr>
+  <tr><td>Working Above Head?</td><td class="center"><div class="yn"><input type="checkbox" name="haz_abovehead_yes"></div></td><td class="center"><div class="yn"><input type="checkbox" name="haz_abovehead_no"></div></td><td><input type="text" name="haz_abovehead_notes"></td></tr>
+  <tr><td>Waste Material Generated?</td><td class="center"><div class="yn"><input type="checkbox" name="haz_waste_yes"></div></td><td class="center"><div class="yn"><input type="checkbox" name="haz_waste_no"></div></td><td><input type="text" name="haz_waste_notes"></td></tr>
+  <tr>
+    <td>Operating Mobile Equipment?</td>
+    <td class="center"><div class="yn"><input type="checkbox" name="haz_mewp_yes"></div></td>
+    <td class="center"><div class="yn"><input type="checkbox" name="haz_mewp_no"></div></td>
+    <td class="center small">If Yes - MEWP Expiry<br><div class="date3"><input type="text" maxlength="2" placeholder="DD"><input type="text" maxlength="2" placeholder="MM"><input type="text" maxlength="2" placeholder="YY"></div></td>
+  </tr>
+  <tr><td>Hazardous Materials Present?</td><td class="center"><div class="yn"><input type="checkbox" name="haz_hazmat_yes"></div></td><td class="center"><div class="yn"><input type="checkbox" name="haz_hazmat_no"></div></td><td></td></tr>
+  <tr>
+    <td>Work At Heights/Fall Protection?</td>
+    <td class="center"><div class="yn"><input type="checkbox" name="haz_fall_yes"></div></td>
+    <td class="center"><div class="yn"><input type="checkbox" name="haz_fall_no"></div></td>
+    <td class="center small">If Yes - Fall Pro Expiry<br><div class="date3"><input type="text" maxlength="2" placeholder="DD"><input type="text" maxlength="2" placeholder="MM"><input type="text" maxlength="2" placeholder="YY"></div></td>
+  </tr>
+  <tr><td>Electrical Systems Present?</td><td class="center"><div class="yn"><input type="checkbox" name="haz_elec_yes"></div></td><td class="center"><div class="yn"><input type="checkbox" name="haz_elec_no"></div></td><td></td></tr>
+  <tr>
+    <th colspan="4" class="center">Morning Sign Off</th>
+  </tr>
+  <tr>
+    <th class="no-wrap">Time:</th>
+    <td colspan="3"><input type="time" name="morning_time"></td>
+  </tr>
+  <tr>
+    <td>Relevant Hazards Identified?</td>
+    <td class="center" colspan="2"><div class="yn"><label><input type="checkbox" name="morning_haz_yes"> Yes</label><label><input type="checkbox" name="morning_haz_no"> No</label></div></td>
+    <td></td>
+  </tr>
+  <tr>
+    <td>Relevant Controls Listed?</td>
+    <td class="center" colspan="2"><div class="yn"><label><input type="checkbox" name="morning_ctrl_yes"> Yes</label><label><input type="checkbox" name="morning_ctrl_no"> No</label></div></td>
+    <td></td>
+  </tr>
+  <tr>
+    <td>Supervisor/Foreman/Rep Name:</td>
+    <td colspan="3"><input type="text" name="morning_name"></td>
+  </tr>
+  <tr>
+    <td>Supervisor/Foreman/Rep Signature:</td>
+    <td colspan="3"><input type="text" name="morning_sign"></td>
+  </tr>
+</table>
+
+<!-- Mid-Day Worker Reviews and Worker Sign Off (BELOW Task Hazards) -->
+<table class="avoid-break">
+  <tr><th colspan="2" class="center">Mid-Day Worker Reviews</th></tr>
+  <tr>
+    <td class="no-wrap">Worker Initials, After 1st Break:</td>
+    <td><input type="text" name="mid_initials_1" class="line-input" placeholder=""></td>
+  </tr>
+  <tr>
+    <td class="no-wrap">Worker Initials, After Lunch:</td>
+    <td><input type="text" name="mid_initials_2" class="line-input" placeholder=""></td>
+  </tr>
+  <tr>
+    <td class="no-wrap">Worker Initials, After 2nd Break:</td>
+    <td><input type="text" name="mid_initials_3" class="line-input" placeholder=""></td>
+  </tr>
+</table>
+
+<table class="avoid-break">
+  <tr><th colspan="3" class="center">Worker Sign Off (Before starting work)</th></tr>
+  <tr>
+    <th class="center v-middle">Worker Name</th>
+    <th class="center v-middle">Worker Signature</th>
+    <th class="no-wrap center v-middle">Controls & Hazards Communicated?</th>
+  </tr>
+  <tr>
+      <td><input type="text" name="wn1"></td>
+      <td><input type="text" name="ws1"></td>
+      <td class="center"><div class="yn"><label><input type="checkbox" name="ws1_yes"> Yes</label><label><input type="checkbox" name="ws1_no"> No</label></div></td>
+  </tr>
+  <tr>
+      <td><input type="text" name="wn2"></td>
+      <td><input type="text" name="ws2"></td>
+      <td class="center"><div class="yn"><label><input type="checkbox" name="ws2_yes"> Yes</label><label><input type="checkbox" name="ws2_no"> No</label></div></td>
+  </tr>
+  <tr>
+      <td><input type="text" name="wn3"></td>
+      <td><input type="text" name="ws3"></td>
+      <td class="center"><div class="yn"><label><input type="checkbox" name="ws3_yes"> Yes</label><label><input type="checkbox" name="ws3_no"> No</label></div></td>
+  </tr>
+  <tr>
+      <td><input type="text" name="wn4"></td>
+      <td><input type="text" name="ws4"></td>
+      <td class="center"><div class="yn"><label><input type="checkbox" name="ws4_yes"> Yes</label><label><input type="checkbox" name="ws4_no"> No</label></div></td>
+  </tr>
+  <tr>
+      <td><input type="text" name="wn5"></td>
+      <td><input type="text" name="ws5"></td>
+      <td class="center"><div class="yn"><label><input type="checkbox" name="ws5_yes"> Yes</label><label><input type="checkbox" name="ws5_no"> No</label></div></td>
+  </tr>
+
+  <tr><th colspan="3"></th></tr>
+    <tr>
+      <td>All workers have been trained in above tasks?</td>
+      <td colspan="2" class="center"><div class="yn"><label><input type="checkbox" name="trained_yes"> Yes</label><label><input type="checkbox" name="trained_no"> No</label></div></td>
+  </tr>
+  <tr>
+      <td>Do you have your Hot Work Permit if applicable?</td>
+      <td colspan="2" class="center"><div class="yn"><label><input type="checkbox" name="hotwork_yes"> Yes</label><label><input type="checkbox" name="hotwork_no"> No</label></div></td>
+  </tr>
+  <tr>
+      <td>All workers are wearing all required PPE.</td>
+      <td colspan="2" class="center"><div class="yn"><label><input type="checkbox" name="ppeworn_yes"> Yes</label><label><input type="checkbox" name="ppeworn_no"> No</label></div></td>
+  </tr>
+  <tr>
+      <td>All workers have inspected all of their PPE.</td>
+      <td colspan="2" class="center"><div class="yn"><label><input type="checkbox" name="ppeinspect_yes"> Yes</label><label><input type="checkbox" name="ppeinspect_no"> No</label></div></td>
+  </tr>
+</table>
+
+<!-- Supervisor Spot Check -->
+<table>
+  <tr>
+    <th colspan="3">SUPERVISOR/FOREMAN/REP SPOT CHECK</th>
+    <th class="no-wrap">Time:</th>
+    <td style="width:180px;"><input type="time" name="spot_time"></td>
+  </tr>
+  <tr>
+    <td colspan="2">FHLA is available, current and valid for the task?</td>
+    <td class="center"><div class="yn"><label><input type="checkbox" name="fhla_valid_yes"> Yes</label><label><input type="checkbox" name="fhla_valid_no"> No</label></div></td>
+    <td colspan="2"></td>
+  </tr>
+  <tr>
+    <td colspan="2">All workers involved in task listed on FHLA?</td>
+    <td class="center"><div class="yn"><label><input type="checkbox" name="on_fhla_yes"> Yes</label><label><input type="checkbox" name="on_fhla_no"> No</label></div></td>
+    <td colspan="2"></td>
+  </tr>
+  <tr>
+    <td class="no-wrap">Supervisor/Foreman/Rep Name:</td>
+    <td colspan="4"><input type="text" name="spot_name"></td>
+  </tr>
+  <tr>
+    <td class="no-wrap">Supervisor/Foreman/Rep Signature:</td>
+    <td colspan="4"><input type="text" name="spot_sign"></td>
+  </tr>
+</table>
+
+<div style="display:flex; gap:12px; justify-content:center; align-items:center; margin: 16px 0 24px;">
+  <button class="submit-btn" onclick="submitForm()">Submit</button>
+  <a href="#" class="export-link" onclick="exportPdf(); return false;">Download PDF</a>
+</div>
+
+<!-- html2pdf for PDF export -->
+<script src="https://cdn.jsdelivr.net/npm/html2pdf.js@0.10.1/dist/html2pdf.bundle.min.js"></script>
+<script>
+async function submitForm() {
+  const formData = {};
+  document.querySelectorAll('input, textarea').forEach(el => {
+    formData[el.name] = el.value;
+  });
+  console.log('Form data:', formData);
+
+  await exportPdf();
+}
+// Auto-calc Risk = Severity x Probability (1..3), max 9
+document.addEventListener('input', () => {
+  for (let i = 1; i <= 10; i++) {
+    const s = parseInt((document.querySelector(`[name="s${i}"]`)||{}).value, 10);
+    const p = parseInt((document.querySelector(`[name="p${i}"]`)||{}).value, 10);
+    const out = document.querySelector(`[name="r${i}"]`);
+    if (!out) continue;
+    // Only auto-calc when user hasn't manually set a value
+    if (!isNaN(s) && !isNaN(p) && !(out.dataset.manual === 'true' && out.value !== '')) {
+      const v = Math.max(1, Math.min(9, s * p));
+      out.value = String(v);
+    } else {
+      if (out.dataset.manual === 'true' && out.value !== '') continue;
+      out.value = '';
+      out.placeholder = '__/9';
+    }
+  }
+});
+
+// Allow manual override of risk rating; limit to 1 digit (1..9)
+document.addEventListener('DOMContentLoaded', () => {
+  const riskInputs = Array.from(document.querySelectorAll('input[name^="r"]'));
+  riskInputs.forEach((el) => {
+    el.addEventListener('input', () => {
+      el.dataset.manual = 'true';
+      el.value = el.value.replace(/[^0-9]/g, '').slice(0, 1);
+      if (el.value) {
+        const n = Math.max(1, Math.min(9, parseInt(el.value, 10)));
+        el.value = String(n);
+      }
+    });
+    el.addEventListener('blur', () => {
+      if (el.value === '') delete el.dataset.manual;
+    });
+  });
+});
+
+async function exportPdf() {
+  const pageEl = document.querySelector('.page');
+  const proj = (document.querySelector('[name="project_name"]')?.value || 'Sunco_FLHA').replace(/[^a-z0-9_\-]+/gi, '_');
+  const date = (document.querySelector('[name="date"]')?.value || '').replace(/[^0-9\-]+/g, '');
+  const filename = `${proj}${date ? '_' + date : ''}.pdf`;
+
+  const opt = {
+    margin:       8, // mm - matches @media print
+    filename,
+    image:        { type: 'jpeg', quality: 0.98 },
+    html2canvas:  { scale: 2, useCORS: true, scrollY: 0 },
+    jsPDF:        { unit: 'mm', format: 'a4', orientation: 'portrait' },
+    pagebreak:    { mode: ['css', 'avoid-all'] }
+  };
+
+  // Hide submit button while exporting
+  const submitBtn = document.querySelector('.submit-btn');
+  const prevDisplay = submitBtn ? submitBtn.style.display : '';
+  if (submitBtn) submitBtn.style.display = 'none';
+  try {
+    // Ensure page width is A4-compatible before capture
+    const prevWidth = pageEl.style.maxWidth;
+    pageEl.style.maxWidth = '190mm';
+
+    // Generate a Blob and trigger a mobile-friendly download/open
+    const worker = html2pdf().set(opt).from(pageEl).toPdf();
+    const pdf = await worker.get('pdf');
+    const blob = pdf.output('blob');
+    const blobUrl = URL.createObjectURL(blob);
+
+    const ua = navigator.userAgent || '';
+    const isIOS = /iPad|iPhone|iPod/.test(ua) || (navigator.platform === 'MacIntel' && navigator.maxTouchPoints > 1);
+    if (isIOS) {
+      // iOS Safari: open in a new tab for user to share/save
+      window.open(blobUrl, '_blank');
+      setTimeout(() => URL.revokeObjectURL(blobUrl), 30000);
+    } else {
+      // Other mobile/desktop: programmatic download via anchor
+      const a = document.createElement('a');
+      a.href = blobUrl;
+      a.download = filename;
+      document.body.appendChild(a);
+      a.click();
+      document.body.removeChild(a);
+      setTimeout(() => URL.revokeObjectURL(blobUrl), 30000);
+    }
+
+    pageEl.style.maxWidth = prevWidth;
+  } finally {
+    if (submitBtn) submitBtn.style.display = prevDisplay;
+  }
+}
+</script>
+
+</div>
+
+</body>
+</html>
