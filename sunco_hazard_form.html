@@ -57,6 +57,11 @@
     resize: none;
   }
 
+  /* Allow long answers and soft-wrapping inside cells */
+  .wrap { overflow-wrap: anywhere; word-break: break-word; }
+  /* Auto-grow height to fit content while keeping table layout */
+  textarea.auto-grow { height: auto; min-height: 48px; line-height: 1.3; box-sizing: border-box; }
+
   .section-title {
     font-weight: bold;
     text-transform: uppercase;
@@ -81,6 +86,7 @@
 
   @media print {
     .submit-btn { display: none; }
+    .export-hide { display: none; }
     @page { size: A4 portrait; margin: 8mm; }
     body { margin: 0; }
     .page { max-width: 190mm; }
@@ -234,7 +240,7 @@
   <tr>
     <td><textarea rows="2" name="t1"></textarea></td>
     <td><textarea rows="2" name="h1"></textarea></td>
-    <td><textarea rows="2" name="c1"></textarea></td>
+    <td><textarea rows="2" name="c1" class="auto-grow wrap"></textarea></td>
     <td class="center"><input type="text" name="s1" class="center small"></td>
     <td class="center"><input type="text" name="p1" class="center small"></td>
     <td class="center"><input class="risk-input" name="r1" placeholder="__/9"></td>
@@ -242,7 +248,7 @@
   <tr>
     <td><textarea rows="2" name="t2"></textarea></td>
     <td><textarea rows="2" name="h2"></textarea></td>
-    <td><textarea rows="2" name="c2"></textarea></td>
+    <td><textarea rows="2" name="c2" class="auto-grow wrap"></textarea></td>
     <td class="center"><input type="text" name="s2" class="center small"></td>
     <td class="center"><input type="text" name="p2" class="center small"></td>
     <td class="center"><input class="risk-input" name="r2" placeholder="__/9"></td>
@@ -250,7 +256,7 @@
   <tr>
     <td><textarea rows="2" name="t3"></textarea></td>
     <td><textarea rows="2" name="h3"></textarea></td>
-    <td><textarea rows="2" name="c3"></textarea></td>
+    <td><textarea rows="2" name="c3" class="auto-grow wrap"></textarea></td>
     <td class="center"><input type="text" name="s3" class="center small"></td>
     <td class="center"><input type="text" name="p3" class="center small"></td>
     <td class="center"><input class="risk-input" name="r3" placeholder="__/9"></td>
@@ -258,7 +264,7 @@
   <tr>
     <td><textarea rows="2" name="t4"></textarea></td>
     <td><textarea rows="2" name="h4"></textarea></td>
-    <td><textarea rows="2" name="c4"></textarea></td>
+    <td><textarea rows="2" name="c4" class="auto-grow wrap"></textarea></td>
     <td class="center"><input type="text" name="s4" class="center small"></td>
     <td class="center"><input type="text" name="p4" class="center small"></td>
     <td class="center"><input class="risk-input" name="r4" placeholder="__/9"></td>
@@ -266,7 +272,7 @@
   <tr>
     <td><textarea rows="2" name="t5"></textarea></td>
     <td><textarea rows="2" name="h5"></textarea></td>
-    <td><textarea rows="2" name="c5"></textarea></td>
+    <td><textarea rows="2" name="c5" class="auto-grow wrap"></textarea></td>
     <td class="center"><input type="text" name="s5" class="center small"></td>
     <td class="center"><input type="text" name="p5" class="center small"></td>
     <td class="center"><input class="risk-input" name="r5" placeholder="__/9"></td>
@@ -274,7 +280,7 @@
   <tr>
     <td><textarea rows="2" name="t6"></textarea></td>
     <td><textarea rows="2" name="h6"></textarea></td>
-    <td><textarea rows="2" name="c6"></textarea></td>
+    <td><textarea rows="2" name="c6" class="auto-grow wrap"></textarea></td>
     <td class="center"><input type="text" name="s6" class="center small"></td>
     <td class="center"><input type="text" name="p6" class="center small"></td>
     <td class="center"><input class="risk-input" name="r6" placeholder="__/9"></td>
@@ -282,7 +288,7 @@
   <tr>
     <td><textarea rows="2" name="t7"></textarea></td>
     <td><textarea rows="2" name="h7"></textarea></td>
-    <td><textarea rows="2" name="c7"></textarea></td>
+    <td><textarea rows="2" name="c7" class="auto-grow wrap"></textarea></td>
     <td class="center"><input type="text" name="s7" class="center small"></td>
     <td class="center"><input type="text" name="p7" class="center small"></td>
     <td class="center"><input class="risk-input" name="r7" placeholder="__/9"></td>
@@ -290,7 +296,7 @@
   <tr>
     <td><textarea rows="2" name="t8"></textarea></td>
     <td><textarea rows="2" name="h8"></textarea></td>
-    <td><textarea rows="2" name="c8"></textarea></td>
+    <td><textarea rows="2" name="c8" class="auto-grow wrap"></textarea></td>
     <td class="center"><input type="text" name="s8" class="center small"></td>
     <td class="center"><input type="text" name="p8" class="center small"></td>
     <td class="center"><input class="risk-input" name="r8" placeholder="__/9"></td>
@@ -298,7 +304,7 @@
   <tr>
     <td><textarea rows="2" name="t9"></textarea></td>
     <td><textarea rows="2" name="h9"></textarea></td>
-    <td><textarea rows="2" name="c9"></textarea></td>
+    <td><textarea rows="2" name="c9" class="auto-grow wrap"></textarea></td>
     <td class="center"><input type="text" name="s9" class="center small"></td>
     <td class="center"><input type="text" name="p9" class="center small"></td>
     <td class="center"><input class="risk-input" name="r9" placeholder="__/9"></td>
@@ -306,7 +312,7 @@
   <tr>
     <td><textarea rows="2" name="t10"></textarea></td>
     <td><textarea rows="2" name="h10"></textarea></td>
-    <td><textarea rows="2" name="c10"></textarea></td>
+    <td><textarea rows="2" name="c10" class="auto-grow wrap"></textarea></td>
     <td class="center"><input type="text" name="s10" class="center small"></td>
     <td class="center"><input type="text" name="p10" class="center small"></td>
     <td class="center"><input class="risk-input" name="r10" placeholder="__/9"></td>
@@ -533,9 +539,8 @@
   </tr>
 </table>
 
-<div style="display:flex; gap:12px; justify-content:center; align-items:center; margin: 16px 0 24px;">
-  <button class="submit-btn" onclick="submitForm()">Submit</button>
-  <a href="#" class="export-link" onclick="exportPdf(); return false;">Download PDF</a>
+<div style="display:flex; gap:12px; justify-content:center; align-items:center; margin: 16px 0 24px;" class="export-hide">
+  <button class="submit-btn" onclick="submitForm()">Download PDF</button>
 </div>
 
 <!-- html2pdf for PDF export -->
@@ -571,6 +576,14 @@ document.addEventListener('input', () => {
 
 // Allow manual override of risk rating; limit to 1 digit (1..9)
 document.addEventListener('DOMContentLoaded', () => {
+  // Auto-grow Control Measure textareas (c1..c10)
+  const grow = (el) => { el.style.height = 'auto'; el.style.height = Math.min(el.scrollHeight, 600) + 'px'; };
+  const cmAreas = Array.from(document.querySelectorAll('textarea[name^="c"]'));
+  cmAreas.forEach((el) => {
+    grow(el);
+    el.addEventListener('input', () => grow(el));
+  });
+
   const riskInputs = Array.from(document.querySelectorAll('input[name^="r"]'));
   riskInputs.forEach((el) => {
     el.addEventListener('input', () => {
@@ -602,10 +615,10 @@ async function exportPdf() {
     pagebreak:    { mode: ['css', 'avoid-all'] }
   };
 
-  // Hide submit button while exporting
-  const submitBtn = document.querySelector('.submit-btn');
-  const prevDisplay = submitBtn ? submitBtn.style.display : '';
-  if (submitBtn) submitBtn.style.display = 'none';
+  // Hide controls while exporting (button/containers)
+  const toHide = Array.from(document.querySelectorAll('.submit-btn, .export-hide'));
+  const prev = toHide.map(el => el.style.display);
+  toHide.forEach(el => { el.style.display = 'none'; });
   try {
     // Ensure page width is A4-compatible before capture
     const prevWidth = pageEl.style.maxWidth;
@@ -636,7 +649,7 @@ async function exportPdf() {
 
     pageEl.style.maxWidth = prevWidth;
   } finally {
-    if (submitBtn) submitBtn.style.display = prevDisplay;
+    toHide.forEach((el, i) => { el.style.display = prev[i]; });
   }
 }
 </script>
